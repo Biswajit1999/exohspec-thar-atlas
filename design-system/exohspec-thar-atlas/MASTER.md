@@ -1,7 +1,9 @@
 # EXOhSPEC Th–Ar Atlas design system
 
-This uses the verified second design lookup: a minimal, Swiss-influenced science
-data story. The first organic/green result was rejected as a poor product match.
+The visual system is a light, journal-influenced scientific report. White paper,
+dark navy ink, restrained rules, and readable plots keep the measured evidence
+central. The interface declares `color-scheme: light` and does not switch with
+the operating-system theme.
 
 ## Direction
 
@@ -13,19 +15,20 @@ data story. The first organic/green result was rejected as a poor product match.
 
 ## Tokens
 
-- Background: `#080a10`
-- Surface: `#10131d`
-- Raised surface: `#171b27`
-- Primary text: `#f7f5f0`
-- Secondary text: `#b4bdcc`
-- Border: `#303747`
-- Primary spectral accent: `#f2bd58`
-- Secondary spectral accent: `#67d9e8`
-- Warning/withheld: `#fb7185`
-- Body: system sans-serif stack
+- Page background: `#f7f8fa`
+- Paper surface: `#ffffff`
+- Primary ink: `#142033`
+- Heading navy: `#102f52`
+- Secondary text: `#536174`
+- Border and scientific rules: `#cbd3dc`
+- Primary data accent: `#1e5e91`
+- Secondary data accent: `#18a7b5`
+- Warm emphasis: `#c56820`
+- Headings: Georgia / Times New Roman serif stack
+- Body: Inter / Aptos / Segoe UI sans-serif stack
 - Data: system monospace stack with tabular numerals
-- Corners: 10 px controls, 18 px media/cards
-- Spacing: 4/8 px scale
+- Corners: restrained; plots and paper panels remain mostly square
+- Spacing: generous journal-like section rhythm with compact data tables
 
 ## Interaction and accessibility
 
@@ -45,4 +48,3 @@ data story. The first organic/green result was rejected as a poor product match.
 - Neon cyberpunk styling that competes with the detector image
 - Glass blur, excessive glow, unlabeled charts, or hidden caveats
 - Publishing exact detector geometry, headers, or laboratory configuration
-

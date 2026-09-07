@@ -1,6 +1,6 @@
-# EXOhSPEC Th–Ar Atlas
+# EXOhSPEC Th–Ar Detector Study
 
-A privacy-aware, reproducible look at four thorium–argon hollow-cathode lamp
+A privacy-aware, reproducible study of four thorium–argon hollow-cathode lamp
 exposures recorded with EXOhSPEC and a ZWO CMOS detector. The project is written
 for a general audience while keeping the scientific boundary clear: detector
 features are not assigned atomic wavelengths until a wavelength solution has
@@ -22,6 +22,13 @@ These are detector-level conclusions. They do not replace bias/dark/flat
 calibration, radiometric calibration, or a wavelength solution; those topics are
 deliberately outside this public-facing release.
 
+## Read the project
+
+- [Scientific website](web/index.html) — light, paper-style interactive report
+- [Detailed technical report](report/technical-report.md) — complete scientific narrative
+- `output/pdf/exohspec-thar-detector-study.pdf` — publication-ready report
+- [Methodology](docs/methodology.md) and [privacy boundary](docs/privacy.md)
+
 ## Reproduce the derived products
 
 Python 3.10 or newer is recommended.
@@ -31,6 +38,9 @@ python -m venv .venv
 python -m pip install -e ".[dev]"
 python scripts/build_products.py path/to/ThAr_30sec.fit path/to/ThAr_60sec.fit \
   path/to/ThAr_120sec.fit path/to/ThAr_180sec.fit --output-root .
+python scripts/build_science_report.py path/to/ThAr_30sec.fit path/to/ThAr_60sec.fit \
+  path/to/ThAr_120sec.fit path/to/ThAr_180sec.fit --output-root .
+python scripts/build_explanatory_figures.py
 pytest
 ```
 
@@ -51,6 +61,7 @@ tests/               numerical and privacy-contract tests
 data/raw/            ignored local input area
 data/derived/        privacy-reviewed scalar table
 web/                 static, GitHub Pages-ready public story
+report/              detailed report, metrics, and publication figures
 docs/                method, privacy boundary, and scientific sources
 ```
 
@@ -73,4 +84,3 @@ Analysis and public communication: **Biswajit Jana**.
 Code and original explanatory text are released under the MIT License. Raw
 laboratory FITS files are intentionally excluded. NIST atomic data and linked
 papers retain their own terms and should be cited directly.
-

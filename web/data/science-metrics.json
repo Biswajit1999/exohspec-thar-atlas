@@ -1,0 +1,67 @@
+{
+  "exposure_seconds": [
+    30.0,
+    60.0,
+    120.0,
+    180.0
+  ],
+  "background_adu": [
+    502.0,
+    504.0,
+    505.0,
+    508.0
+  ],
+  "background_sigma_adu": [
+    2.965,
+    4.448,
+    4.448,
+    4.448
+  ],
+  "bright_pixel_count": [
+    6267,
+    10906,
+    17998,
+    26132
+  ],
+  "near_ceiling_pixel_count": [
+    1,
+    15,
+    75,
+    121
+  ],
+  "normalized_integrated_signal": [
+    1.0,
+    1.97961,
+    4.01202,
+    5.84104
+  ],
+  "linearity_r_squared": 0.999276,
+  "linearity_max_fractional_residual": 0.01994,
+  "registration_shift_relative_to_120_px": [
+    [
+      -0.07,
+      -0.012
+    ],
+    [
+      -0.065,
+      -0.017
+    ],
+    [
+      0.0,
+      0.0
+    ],
+    [
+      -0.045,
+      -0.019
+    ]
+  ],
+  "registration_max_magnitude_px": 0.071,
+  "hdr_fallback_pixel_count": {
+    "180": 66279,
+    "120": 49,
+    "60": 57,
+    "30": 14
+  },
+  "candidate_feature_count": 500,
+  "caveat": "Detector-domain analysis only; candidates are not wavelength-calibrated atomic lines."
+}

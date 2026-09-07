@@ -91,17 +91,18 @@ def _hdr_rate(paths: list[Path], crop: tuple[slice, slice]) -> tuple[np.ndarray,
     return result, used
 
 
-def _asinh_display(image: np.ndarray, upper_percentile: float = 99.8) -> np.ndarray:
+def _asinh_display(image: np.ndarray, upper_percentile: float = 99.25) -> np.ndarray:
     finite = image[np.isfinite(image)]
     low = float(np.percentile(finite, 15.0))
     high = float(np.percentile(finite, upper_percentile))
     scaled = np.clip((image - low) / max(high - low, 1e-6), 0.0, None)
-    return np.arcsinh(7.0 * scaled) / np.arcsinh(7.0)
+    stretched = np.arcsinh(14.0 * scaled) / np.arcsinh(14.0)
+    return np.power(stretched, 0.72)
 
 
 def _save_image(image: np.ndarray, path: Path, label: str) -> None:
     fig, ax = plt.subplots(figsize=(7.2, 10.0), constrained_layout=True)
-    ax.imshow(_asinh_display(image), origin="lower", aspect="auto", cmap="magma")
+    ax.imshow(_asinh_display(image), origin="lower", aspect="auto", cmap="gray", vmin=0, vmax=1)
     ax.set_axis_off()
     ax.text(
         0.035,
@@ -212,4 +213,3 @@ def build_public_products(input_paths: Iterable[str | Path], output_root: str | 
         writer.writerows(asdict(item) for item in results)
 
     return results
-

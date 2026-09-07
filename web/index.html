@@ -3,200 +3,211 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="A privacy-aware, reproducible exploration of EXOhSPEC thorium–argon exposures."
-    />
-    <title>EXOhSPEC Th–Ar Atlas</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script src="app.js" defer></script>
+    <meta name="description" content="Scientific detector-domain analysis of four EXOhSPEC thorium-argon exposures." />
+    <title>EXOhSPEC Th-Ar Detector Study</title>
+    <link rel="stylesheet" href="styles.css?v=3" />
+    <script src="app.js?v=3" defer></script>
   </head>
   <body>
-    <a class="skip-link" href="#main">Skip to the story</a>
-    <header class="site-header">
-      <a class="wordmark" href="#top" aria-label="EXOhSPEC Th–Ar Atlas home">
-        <span class="wordmark-mark" aria-hidden="true"></span>
-        <span>EXOhSPEC <b>Th–Ar Atlas</b></span>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="topbar">
+      <a class="identity" href="#top" aria-label="EXOhSPEC Th-Ar study home">
+        <svg aria-hidden="true" viewBox="0 0 44 44"><circle cx="22" cy="22" r="18"/><path d="M8 22h28M12 14h20M12 30h20M18 5v34M26 5v34"/></svg>
+        <span><b>EXOhSPEC</b><small>Calibration Laboratory</small></span>
       </a>
-      <nav aria-label="Main navigation">
-        <a href="#exposure">Exposure</a>
-        <a href="#lamp">The lamp</a>
-        <a href="#method">Method</a>
-        <a href="#limits">Limits</a>
+      <nav aria-label="Report sections">
+        <a href="#data">Data</a><a href="#spectrum">Spectrum</a><a href="#results">Results</a><a href="#physics">Physics</a><a href="#methods">Methods</a><a href="exohspec-thar-detector-study.pdf">PDF</a>
       </nav>
     </header>
 
     <main id="main">
-      <section class="hero" id="top" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <p class="eyebrow">A measured light source · four exposure times</p>
-          <h1 id="hero-title">A forest of lines becomes a ruler for starlight.</h1>
-          <p class="lede">
-            This is a thorium–argon calibration lamp seen through EXOhSPEC. Each
-            bright feature is light recorded by a ZWO CMOS detector. The goal is
-            simple: reveal faint structure without flattening the brightest cores.
-          </p>
-          <div class="hero-actions">
-            <a class="button primary" href="#exposure">See the exposure result</a>
-            <a class="button secondary" href="#method">Read the method</a>
+      <article>
+        <header class="paper-header" id="top">
+          <div class="report-kicker">Technical report · Data release 0.2 · September 2026</div>
+          <div class="paper-grid">
+            <div>
+              <h1>Detector-domain characterization of thorium-argon calibration exposures</h1>
+              <p class="authors">Biswajit Jana · EXOhSPEC instrumentation study</p>
+              <p class="affiliation">University of Hertfordshire · Exoplanet high-resolution spectroscopy</p>
+              <a class="pdf-link" href="exohspec-thar-detector-study.pdf">Download the 11-page technical report (PDF)</a>
+            </div>
+            <dl class="metadata">
+              <div><dt>Instrument</dt><dd>EXOhSPEC</dd></div>
+              <div><dt>Detector</dt><dd>ZWO CMOS family</dd></div>
+              <div><dt>Source</dt><dd>Th-Ar hollow-cathode lamp</dd></div>
+              <div><dt>Exposure set</dt><dd>30, 60, 120, 180 s</dd></div>
+              <div><dt>Analysis domain</dt><dd>Detector coordinates</dd></div>
+            </dl>
           </div>
-          <dl class="hero-facts" aria-label="Project summary">
-            <div><dt>Frames</dt><dd>4</dd></div>
-            <div><dt>Range</dt><dd>30–180 s</dd></div>
-            <div><dt>Best single</dt><dd id="best-single">120 s</dd></div>
-          </dl>
-        </div>
-        <figure class="hero-figure">
-          <img
-            src="assets/hdr-spectrum.webp"
-            width="1080"
-            height="1500"
-            alt="Cropped detector view of many bright thorium–argon emission features arranged through the EXOhSPEC spectral format."
-          />
-          <figcaption>
-            High-dynamic-range composite. Coordinates are normalized and the raw
-            detector geometry is intentionally withheld.
-          </figcaption>
-        </figure>
-      </section>
+          <section class="abstract" aria-labelledby="abstract-title">
+            <h2 id="abstract-title">Abstract</h2>
+            <p>
+              Four thorium-argon lamp frames were compared to determine the exposure regime that best preserves bright-line headroom while revealing faint structure. The unsaturated integrated response is close to proportional to exposure time (<i>R</i><sup>2</sup> = <span data-metric="r2">0.9993</span>), while the population above 60,000 ADU rises from 1 pixel at 30 s to 121 pixels at 180 s. Translational registration is stable within an estimated <span data-metric="shift">0.071</span> native pixel under a phase-correlation model. A 120 s frame is therefore the strongest single-exposure compromise; a four-frame HDR estimator is preferred for visualization and detector-domain feature finding. No atomic wavelengths are assigned because a validated order trace and dispersion solution are not yet available.
+            </p>
+          </section>
+        </header>
 
-      <section class="section exposure" id="exposure" aria-labelledby="exposure-title">
-        <div class="section-heading">
-          <p class="chapter">01 · The exposure decision</p>
-          <h2 id="exposure-title">120 seconds wins—if only one frame can be used.</h2>
-          <p>
-            The short frame keeps headroom in the bright cores. The long frame
-            reaches faint structure. The 120 s image lands between those demands;
-            using all four frames produces the most legible composite.
-          </p>
-        </div>
-        <div class="verdict-grid" id="exposure-cards" aria-live="polite">
-          <article class="verdict-card"><span>30 s</span><h3>Bright-core guard</h3><p>Preserves the strongest features.</p></article>
-          <article class="verdict-card"><span>60 s</span><h3>Bridge exposure</h3><p>Adds faint signal while retaining headroom.</p></article>
-          <article class="verdict-card featured"><span>120 s</span><h3>Best single frame</h3><p>The clearest one-frame compromise.</p></article>
-          <article class="verdict-card"><span>180 s</span><h3>Faint-feature reach</h3><p>Useful where bright pixels remain below full scale.</p></article>
-        </div>
-        <figure class="wide-figure">
-          <img
-            src="assets/exposure-study.png"
-            width="2070"
-            height="756"
-            loading="lazy"
-            alt="Two plots showing that bright-feature detection and full-scale pixel counts increase with exposure time."
-          />
-          <figcaption>
-            Detector-level diagnostics. Full-scale counts include any persistent
-            detector events, so the chart is a warning signal—not a line catalogue.
-          </figcaption>
-        </figure>
-      </section>
+        <section class="results-strip" aria-label="Principal findings">
+          <div><strong>120 s</strong><span>recommended single frame</span></div>
+          <div><strong>0.9993</strong><span>response linearity R²</span></div>
+          <div><strong>≤ 2.0%</strong><span>maximum fit residual</span></div>
+          <div><strong>0.071 px</strong><span>largest estimated shift</span></div>
+        </section>
 
-      <section class="section split" id="lamp" aria-labelledby="lamp-title">
-        <div class="section-heading sticky-copy">
-          <p class="chapter">02 · The calibration lamp</p>
-          <h2 id="lamp-title">Why thorium and argon?</h2>
-          <p>
-            A hollow-cathode discharge excites atoms and ions in the lamp. As they
-            return to lower-energy states, they emit light at discrete wavelengths.
-            Thorium supplies a dense set of sharp reference features; argon sustains
-            the discharge and contributes its own features.
-          </p>
-          <p>
-            Once known wavelengths are matched to detector positions, the mapping
-            turns pixels into a wavelength scale. That scale lets a spectrograph
-            measure tiny stellar shifts used in radial-velocity work.
-          </p>
-        </div>
-        <div class="process" aria-label="From lamp to wavelength solution">
-          <article><span>1</span><div><h3>Excite</h3><p>The discharge gives atoms and ions energy.</p></div></article>
-          <article><span>2</span><div><h3>Emit</h3><p>Transitions release discrete wavelengths.</p></div></article>
-          <article><span>3</span><div><h3>Disperse</h3><p>EXOhSPEC separates the light into a spectral format.</p></div></article>
-          <article><span>4</span><div><h3>Match</h3><p>Validated peaks are paired with laboratory reference wavelengths.</p></div></article>
-          <article><span>5</span><div><h3>Calibrate</h3><p>A fitted solution maps detector position to wavelength.</p></div></article>
-        </div>
-      </section>
+        <section class="paper-section" id="data" aria-labelledby="data-title">
+          <div class="section-number">1</div>
+          <div class="section-body">
+            <h2 id="data-title">The measured two-dimensional spectral format</h2>
+            <p class="lead">
+              The stretch below is intentionally stronger than a conventional linear display. It exposes faint features, structured background, bright cores, and the geometry of the recorded format on the same panel.
+            </p>
+            <figure class="figure">
+              <img src="assets/annotated-detector-map.png" width="1615" height="2052" alt="Annotated high-contrast EXOhSPEC thorium-argon detector image showing emission-line images, high-signal features, background structure, and candidate echelle traces." />
+              <figcaption><b>Figure 1.</b> A reading guide drawn directly on the measured detector data. The annotations describe detector morphology only; trace numbering and wavelengths await calibration.</figcaption>
+            </figure>
+            <figure class="figure dark-figure">
+              <div class="figure-toolbar" role="group" aria-label="Select detector image">
+                <button class="image-choice active" data-image="assets/hdr-spectrum.webp" data-caption="HDR relative signal-rate composite" aria-pressed="true">HDR composite</button>
+                <button class="image-choice" data-image="assets/spectral-format.webp" data-caption="Measured 120 second frame" aria-pressed="false">120 s frame</button>
+              </div>
+              <img id="detector-image" src="assets/hdr-spectrum.webp" width="1080" height="1500" alt="High-contrast monochrome view of the cropped thorium-argon detector format, with hundreds of bright emission features." />
+              <figcaption><b>Figure 2.</b> <span id="detector-caption">HDR relative signal-rate composite</span>. The image is a privacy-reviewed crop with an asinh display stretch. Bright points are measured detector features; they are not yet atomic identifications.</figcaption>
+            </figure>
+          </div>
+        </section>
 
-      <section class="section method" id="method" aria-labelledby="method-title">
-        <div class="section-heading">
-          <p class="chapter">03 · From four frames to one view</p>
-          <h2 id="method-title">Use the longest valid measurement at each pixel.</h2>
-          <p>
-            The composite is based on relative signal rate. The longest exposure
-            provides faint information; a shorter exposure replaces any pixel that
-            approaches the detector ceiling. An asinh stretch changes only the
-            display, allowing bright and faint features to share one image.
-          </p>
-        </div>
-        <div class="method-grid">
-          <figure>
-            <img
-              src="assets/spectral-format.webp"
-              width="1080"
-              height="1500"
-              loading="lazy"
-              alt="Privacy-cropped 120 second detector image showing the measured thorium–argon spectral format."
-            />
-            <figcaption>The recommended 120 s single exposure.</figcaption>
-          </figure>
-          <figure>
-            <img
-              src="assets/hdr-spectrum.webp"
-              width="1080"
-              height="1500"
-              loading="lazy"
-              alt="Composite detector image combining unsaturated information from four exposure times."
-            />
-            <figcaption>The four-exposure relative signal-rate composite.</figcaption>
-          </figure>
-        </div>
-        <aside class="definition">
-          <p class="mono">public_product = longest_unsaturated(frame) ÷ exposure_time</p>
-          <p>This is not an absolute flux calibration.</p>
-        </aside>
-      </section>
+        <section class="paper-section" id="spectrum" aria-labelledby="spectrum-title">
+          <div class="section-number">2</div>
+          <div class="section-body">
+            <h2 id="spectrum-title">Interactive detector-space spectrum</h2>
+            <p class="lead">
+              A representative band is summed across its spatial width and plotted as relative signal rate. Change exposure to examine how faint peaks emerge and bright peaks approach the detector ceiling.
+            </p>
+            <figure class="figure plot-figure">
+              <div class="spectrum-controls" role="group" aria-label="Select exposure plotted">
+                <button data-series="30 s" aria-pressed="false">30 s</button>
+                <button data-series="60 s" aria-pressed="false">60 s</button>
+                <button data-series="120 s" aria-pressed="false">120 s</button>
+                <button data-series="180 s" aria-pressed="false">180 s</button>
+                <button data-series="HDR" class="active" aria-pressed="true">HDR</button>
+              </div>
+              <div class="chart-wrap">
+                <svg id="spectrum-chart" role="img" aria-labelledby="chart-title chart-desc" viewBox="0 0 1000 420">
+                  <title id="chart-title">Representative detector-space thorium-argon profile</title>
+                  <desc id="chart-desc">Relative signal rate versus normalized detector coordinate. This is not a wavelength-calibrated spectrum.</desc>
+                </svg>
+              </div>
+              <div class="chart-note"><span class="line-swatch"></span><b id="series-label">HDR</b><span>asinh-scaled relative signal rate</span></div>
+              <figcaption><b>Figure 3.</b> Extracted profile from one representative detector band. The x-axis is normalized detector coordinate, not wavelength. A wavelength in angstroms would be scientifically misleading before line matching and a dispersion solution.</figcaption>
+            </figure>
+            <figure class="figure">
+              <img src="assets/representative-profiles.png" width="2090" height="1482" loading="lazy" alt="Three extracted detector-space profiles with multiple sharp emission peaks plotted on scientific axes." />
+              <figcaption><b>Figure 4.</b> Three representative bands selected for significant feature density. An asinh intensity transform reveals weaker peaks without claiming radiometric calibration.</figcaption>
+            </figure>
+          </div>
+        </section>
 
-      <section class="section limits" id="limits" aria-labelledby="limits-title">
-        <div class="section-heading">
-          <p class="chapter">04 · What we do not claim</p>
-          <h2 id="limits-title">A bright peak is not automatically an identified line.</h2>
-          <p>
-            This release does not publish a wavelength solution, atomic labels,
-            detector model, optical layout, or raw FITS headers. Line names will
-            be added only after order tracing, reference matching, blend rejection,
-            and residual validation.
-          </p>
-        </div>
-        <div class="boundary-grid">
-          <article><p class="status measured">Measured</p><h3>Exposure behavior</h3><p>Background, headroom, relative signal, and a privacy-safe spectral crop.</p></article>
-          <article><p class="status pending">Pending</p><h3>Atomic identification</h3><p>Requires a validated pixel-to-wavelength model and reference-line matching.</p></article>
-          <article><p class="status withheld">Withheld</p><h3>Laboratory detail</h3><p>Exact detector model, geometry, headers, optical configuration, and local paths.</p></article>
-        </div>
-      </section>
+        <section class="paper-section" id="results" aria-labelledby="results-title">
+          <div class="section-number">3</div>
+          <div class="section-body">
+            <h2 id="results-title">Exposure response and stability</h2>
+            <div class="finding-grid">
+              <article><h3>Linearity</h3><p>The common unsaturated signal mask follows exposure time with <i>R</i><sup>2</sup> = 0.999276. The largest fractional departure from the through-origin model is 1.994%.</p></article>
+              <article><h3>Headroom</h3><p>Near-ceiling pixels increase monotonically: 1, 15, 75, and 121 at 30, 60, 120, and 180 s. Longer integrations gain faint features but progressively lose bright-core information.</p></article>
+              <article><h3>Registration</h3><p>Phase correlation estimates a maximum translation of 0.071 pixel relative to the 120 s frame. This is a repeatability diagnostic under a translation-only model, not a complete stability budget.</p></article>
+              <article><h3>HDR contribution</h3><p>The 180 s frame supplies most valid source pixels; 120, 60, and 30 s frames replace 49, 57, and 14 source-mask pixels respectively where longer integrations approach the adopted ceiling.</p></article>
+            </div>
+            <figure class="figure">
+              <img src="assets/detector-diagnostics.png" width="2160" height="1620" loading="lazy" alt="Four quantitative plots showing detector background, visible structure, near-ceiling pixels, and linear integrated response versus exposure time." />
+              <figcaption><b>Figure 5.</b> Detector diagnostics. Counts use a common privacy-safe crop except the separate full-scale diagnostic. Integrated response is evaluated on a common unsaturated source mask.</figcaption>
+            </figure>
+            <div class="table-wrap" tabindex="0" aria-label="Scrollable exposure metrics table">
+              <table>
+                <caption>Table 1. Exposure-level measurements</caption>
+                <thead><tr><th>Exposure</th><th>Background</th><th>Robust σ</th><th>Bright pixels</th><th>≥60,000 ADU</th><th>Integrated signal / 30 s</th></tr></thead>
+                <tbody id="metrics-table">
+                  <tr><td>30 s</td><td>502 ADU</td><td>2.97 ADU</td><td>6,267</td><td>1</td><td>1.000</td></tr>
+                  <tr><td>60 s</td><td>504 ADU</td><td>4.45 ADU</td><td>10,906</td><td>15</td><td>1.980</td></tr>
+                  <tr><td>120 s</td><td>505 ADU</td><td>4.45 ADU</td><td>17,998</td><td>75</td><td>4.012</td></tr>
+                  <tr><td>180 s</td><td>508 ADU</td><td>4.45 ADU</td><td>26,132</td><td>121</td><td>5.841</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <figure class="figure compact-figure">
+              <img src="assets/registration-shifts.png" width="1710" height="864" loading="lazy" alt="Bar chart of estimated x and y translations for each exposure relative to the 120 second frame." />
+              <figcaption><b>Figure 6.</b> Translation estimates from phase correlation after four-pixel block averaging. Sub-pixel values should be interpreted as algorithmic estimates, not metrology-grade uncertainties.</figcaption>
+            </figure>
+          </div>
+        </section>
 
-      <section class="section sources" aria-labelledby="sources-title">
-        <div class="section-heading">
-          <p class="chapter">05 · Provenance</p>
-          <h2 id="sources-title">Measured locally. Explained with public sources.</h2>
-        </div>
-        <ol>
-          <li><a href="https://star.herts.ac.uk/exohspec/">University of Hertfordshire · EXOhSPEC</a></li>
-          <li><a href="https://uhra.herts.ac.uk/id/eprint/14227/1/20190626_ProcSPIE_EXOhSPEC_V3.pdf">Lhospice et al. · EXOhSPEC design and performance</a></li>
-          <li><a href="https://www.nist.gov/pml/spectrum-th-ar-hollow-cathode-lamps">NIST SRD 161 · Th–Ar hollow-cathode spectra</a></li>
-          <li><a href="https://doi.org/10.1088/0067-0049/211/1/4">Redman, Nave &amp; Sansonetti · Thorium Ritz wavelengths</a></li>
-        </ol>
-      </section>
+        <section class="paper-section" id="physics" aria-labelledby="physics-title">
+          <div class="section-number">4</div>
+          <div class="section-body prose">
+            <h2 id="physics-title">Why a thorium-argon lamp works</h2>
+            <figure class="figure">
+              <img src="assets/emission-vs-absorption.png" width="2090" height="1292" loading="lazy" alt="Conceptual scientific plots comparing narrow emission peaks against absorption dips in a continuum." />
+              <figcaption><b>Figure 7.</b> Conceptual distinction between emission and absorption. Th-Ar is an emission calibration source: its lamp adds narrow bright features. A stellar absorption spectrum instead removes intensity from a continuum. The wavelengths in this teaching diagram are illustrative and are not measured EXOhSPEC line assignments.</figcaption>
+            </figure>
+            <h3>Hollow-cathode emission</h3>
+            <p>An electrical discharge in low-pressure argon creates energetic ions and electrons. Ion bombardment releases thorium from the cathode by sputtering; collisions excite neutral and ionized species. Radiative de-excitation then produces narrow emission features. The pattern acts as a ruler only when detector centroids are matched to independently measured reference wavelengths.</p>
+            <h3>Why thorium is useful</h3>
+            <p>Thorium produces a dense optical line spectrum. NIST Standard Reference Database 161 includes reference wavelengths for more than 20,000 Th I, Th II, and Th III features, drawing on high-resolution Fourier-transform measurements. The dominant terrestrial isotope, <sup>232</sup>Th, has a 1.40 × 10<sup>10</sup> year half-life; its dominance reduces the isotopic complexity encountered in many other elements.</p>
+            <h3>Why argon is present</h3>
+            <p>Argon sustains the discharge and produces additional Ar I, Ar II, and Ar III features. Some argon lines can be extremely strong, which helps acquisition but creates dynamic-range and contamination problems. The exposure ladder demonstrates that conflict directly: sensitivity to faint structure improves while bright cores approach full scale.</p>
+            <h3>Abundance and availability</h3>
+            <p>Thorium is naturally distributed through crustal minerals rather than being an artificial laboratory element. USGS estimates about 10.5 mg kg<sup>-1</sup> in the upper continental crust, with monazite an important source mineral. Argon is far more accessible: NOAA gives 0.934% by volume in dry air, and atmospheric argon is about 99.6% <sup>40</sup>Ar. Geological abundance does not determine spectral usefulness; the relevant properties are line density, wavelength accuracy, intensity distribution, and stability.</p>
+            <h3>Astronomical applications</h3>
+            <p>Th-Ar exposures establish an absolute wavelength scale, monitor instrumental drift, support radial-velocity measurements, and diagnose spectral-format changes. In exoplanet spectroscopy, an apparent Doppler shift is meaningful only if detector motion and wavelength calibration are controlled well below the stellar signal being sought. Modern systems may combine Th-Ar absolute anchors with dense Fabry-Perot references or laser-frequency combs.</p>
+          </div>
+        </section>
+
+        <section class="paper-section" id="methods" aria-labelledby="methods-title">
+          <div class="section-number">5</div>
+          <div class="section-body prose">
+            <h2 id="methods-title">Methods, assumptions, and boundary of inference</h2>
+            <ol class="method-list">
+              <li><b>Safe ingestion.</b> The two-dimensional primary image is memory-mapped. Only exposure time is permitted into public metadata; raw headers and exact detector geometry are not serialized.</li>
+              <li><b>Background.</b> The median of a sparse full-frame sample estimates the pedestal. Scatter is 1.4826 times the median absolute deviation.</li>
+              <li><b>Public crop.</b> Bright-pixel coordinate percentiles reject isolated events and define a padded region. Published axes are normalized.</li>
+              <li><b>Response mask.</b> A common mask is formed from the 180 s signal-rate image, dilated to capture the local point-spread footprint, and restricted to pixels below 55,000 ADU in every exposure.</li>
+              <li><b>Linearity.</b> Pedestal-subtracted counts inside that mask are summed and fitted through the origin against exposure time.</li>
+              <li><b>Registration.</b> Log-transformed, block-averaged images are compared by phase correlation. The model tests translation only; rotation, scale, and local distortion are not estimated.</li>
+              <li><b>HDR.</b> For each pixel, the longest exposure below 60,000 ADU is converted to relative ADU s<sup>-1</sup>. Shorter exposures replace near-ceiling values.</li>
+              <li><b>Feature finding.</b> Local maxima are ranked after mild Gaussian smoothing. The displayed catalogue is capped at the 500 strongest morphological candidates and is explicitly not an atomic line list.</li>
+            </ol>
+            <aside class="equation" aria-label="HDR estimator equation">
+              <span>R(x,y) = [I<sub>t*</sub>(x,y) - B<sub>t*</sub>] / t*</span>
+              <small>where t* is the longest exposure satisfying I<sub>t*</sub> &lt; 60,000 ADU</small>
+            </aside>
+            <h3>What is still required for wavelength calibration</h3>
+            <p>A scientifically defensible wavelength solution needs traced orders, extracted one-dimensional spectra, an approximate dispersion model, matching to NIST reference lines, blend and outlier rejection, a two-dimensional polynomial or physical dispersion solution, and residual analysis by order and wavelength. Until this chain is complete, the project does not label peaks as Th I, Th II, Ar I, or any wavelength in angstroms.</p>
+          </div>
+        </section>
+
+        <section class="paper-section" id="references" aria-labelledby="references-title">
+          <div class="section-number">6</div>
+          <div class="section-body references">
+            <h2 id="references-title">References and data provenance</h2>
+            <ol>
+              <li>Lhospice, E. et al. (2019). <a href="https://uhra.herts.ac.uk/id/eprint/14227/1/20190626_ProcSPIE_EXOhSPEC_V3.pdf">EXOhSPEC folded design optimization and performance estimation</a>. Proceedings of SPIE.</li>
+              <li>University of Hertfordshire. <a href="https://star.herts.ac.uk/exohspec/">EXOhSPEC project page</a>.</li>
+              <li>Nave, G. et al. <a href="https://www.nist.gov/pml/spectrum-th-ar-hollow-cathode-lamps">Spectrum of Th-Ar Hollow Cathode Lamps</a>. NIST SRD 161, DOI 10.18434/T4S01V.</li>
+              <li>Redman, S. L., Nave, G. &amp; Sansonetti, C. J. (2014). <a href="https://doi.org/10.1088/0067-0049/211/1/4">The Spectrum of Thorium from 250 nm to 5500 nm</a>. ApJS 211(1).</li>
+              <li>Errmann, R. et al. (2020). <a href="https://doi.org/10.1088/1538-3873/ab8783">HiFLEx: A Highly Flexible Package to Reduce Cross-dispersed Echelle Spectra</a>. PASP 132, 064504.</li>
+              <li>USGS. <a href="https://pubs.usgs.gov/sir/2017/5118/elements/Thorium/Th_txt.html">Thorium in the upper continental crust and soils</a>.</li>
+              <li>NOAA. <a href="https://prod-01-alb-www-noaa.woc.noaa.gov/jetstream/atmosphere">Composition of the dry atmosphere</a>.</li>
+              <li>CIAAW. <a href="https://ciaaw.org/thorium.htm">Atomic weight and isotopic composition of thorium</a>.</li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="acknowledgement">
+          <h2>Acknowledgements</h2>
+          <p>This work was carried out by Biswajit Jana in the context of EXOhSPEC instrumentation research. The author acknowledges Prof. Hugh Jones for supervision of the EXOhSPEC research and Prof. Bill Martin for supervision of the optics and laboratory work at the University of Hertfordshire.</p>
+        </section>
+      </article>
     </main>
 
-    <footer>
-      <div>
-        <p class="footer-title">EXOhSPEC Th–Ar Atlas</p>
-        <p>Analysis and public communication by Biswajit Jana.</p>
-      </div>
-      <p>
-        Supervised by Prof. Hugh Jones and Prof. Bill Martin,<br />
-        University of Hertfordshire.
-      </p>
-    </footer>
+    <footer><span>EXOhSPEC Th-Ar detector study</span><span>Reproducible Python · Privacy-reviewed derivatives · No raw FITS published</span></footer>
   </body>
 </html>
-
