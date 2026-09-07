@@ -1,0 +1,5 @@
+exposure_seconds,background_adu,background_sigma_adu,full_scale_pixels,bright_pixels,display_role
+30.0,502.0,2.97,1,6267,protects bright line cores
+60.0,504.0,4.45,10,10906,bridges bright and faint regimes
+120.0,505.0,4.45,66,17998,best single-frame balance
+180.0,508.0,4.45,110,26132,reveals faint structure

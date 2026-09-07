@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software or its derived public figures, please cite it."
+title: "EXOhSPEC Th–Ar Atlas"
+type: software
+authors:
+  - family-names: Jana
+    given-names: Biswajit
+version: 0.1.0
+date-released: 2026-09-03
+license: MIT
+repository-code: "https://github.com/Biswajit1999/exohspec-thar-atlas"
+keywords:
+  - astronomical spectroscopy
+  - thorium-argon
+  - wavelength calibration
+  - EXOhSPEC
+

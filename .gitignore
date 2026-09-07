@@ -1,0 +1,23 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+dist/
+build/
+*.egg-info/
+
+# Raw laboratory files stay local. Only privacy-reviewed derivatives are public.
+data/raw/*
+!data/raw/README.md
+*.fit
+*.fits
+*.fts
+
+# Local reports and scratch products
+data/derived/*.npy
+data/derived/*.npz
+data/derived/*.fits
+.DS_Store
+Thumbs.db
+

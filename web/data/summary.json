@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "instrument": "EXOhSPEC",
+  "detector": "ZWO CMOS detector",
+  "calibration_source": "thorium\u2013argon hollow-cathode lamp",
+  "recommended_single_exposure_seconds": 120.0,
+  "hdr_exposures_seconds": [
+    30.0,
+    60.0,
+    120.0,
+    180.0
+  ],
+  "coordinate_policy": "normalized public crop; raw detector geometry withheld",
+  "wavelength_status": "not yet calibrated; detector features are not atomic identifications",
+  "exposures": [
+    {
+      "exposure_seconds": 30.0,
+      "background_adu": 502.0,
+      "background_sigma_adu": 2.97,
+      "full_scale_pixels": 1,
+      "bright_pixels": 6267,
+      "display_role": "protects bright line cores"
+    },
+    {
+      "exposure_seconds": 60.0,
+      "background_adu": 504.0,
+      "background_sigma_adu": 4.45,
+      "full_scale_pixels": 10,
+      "bright_pixels": 10906,
+      "display_role": "bridges bright and faint regimes"
+    },
+    {
+      "exposure_seconds": 120.0,
+      "background_adu": 505.0,
+      "background_sigma_adu": 4.45,
+      "full_scale_pixels": 66,
+      "bright_pixels": 17998,
+      "display_role": "best single-frame balance"
+    },
+    {
+      "exposure_seconds": 180.0,
+      "background_adu": 508.0,
+      "background_sigma_adu": 4.45,
+      "full_scale_pixels": 110,
+      "bright_pixels": 26132,
+      "display_role": "reveals faint structure"
+    }
+  ]
+}
