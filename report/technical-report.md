@@ -26,11 +26,41 @@ This is a public, privacy-reviewed release. It identifies the instrument as EXOh
 
 A Th-Ar lamp is a hollow-cathode discharge source. The cathode contains thorium, and the fill gas is argon at low pressure. Applying a voltage accelerates charged particles through the gas. Argon ions bombard the cathode and sputter thorium atoms into the discharge. Collisions excite neutral and ionized thorium and argon. When those excited states relax, they emit photons at discrete energies and therefore at discrete wavelengths.
 
+![Conceptual hollow-cathode lamp](figures/concept-thar-lamp.png)
+
+**Figure 1a.** AI-generated conceptual illustration of a Th-Ar hollow-cathode source feeding a generic spectrograph entrance. It is not a photograph, engineering drawing, or depiction of the private EXOhSPEC laboratory.
+
+### 2.1 Inside the discharge
+
+The fill gas is essential: it allows an electrical discharge to be established at a pressure where charged particles can accelerate between collisions. Positive argon ions are drawn toward the cathode. Their impact transfers momentum to the cathode surface, releasing thorium atoms by sputtering. Electrons and ions then collide with both argon and thorium species. Some collisions ionize an atom; others lift an electron into an excited bound state.
+
+![Conceptual discharge and emission sequence](figures/concept-thar-emission-process.png)
+
+**Figure 1b.** AI-generated conceptual sequence: argon ion bombardment, thorium sputtering, excitation, and emission of photons at discrete energies. The artwork is explanatory rather than a literal cross-section.
+
+### 2.2 Energy levels and discrete lines
+
+Atomic electrons occupy quantized states. A radiative transition from upper energy \(E_u\) to lower energy \(E_l\) produces a photon satisfying
+
+\[
+E_u-E_l=h\nu=\frac{hc}{\lambda}.
+\]
+
+Each permitted transition therefore corresponds to a characteristic wavelength. Thorium's complex electron configuration creates a particularly dense set of transitions. In spectroscopic notation, Th I is neutral thorium, Th II is singly ionized thorium, and Th III is doubly ionized thorium; Ar I, Ar II, and Ar III use the same convention for argon. Roman numerals describe charge state, not brightness.
+
 The result is a line-rich **emission spectrum**. It differs fundamentally from a stellar absorption spectrum. An emission line is a narrow positive peak above the local background because the source adds photons at a transition wavelength. An absorption line is a narrow deficit below a continuum because intervening material removes photons at a transition wavelength. Th-Ar lamps are useful as spectrograph rulers because their emission-line wavelengths can be measured independently at high precision.
 
 ![Conceptual emission and absorption comparison](figures/emission-vs-absorption.png)
 
-**Figure 1.** Conceptual comparison of emission and absorption signatures. The wavelength values are illustrative and are not EXOhSPEC line identifications.
+**Figure 1c.** Conceptual comparison of emission and absorption signatures. The wavelength values are illustrative and are not EXOhSPEC line identifications.
+
+### 2.3 Why brightness alone cannot identify a species
+
+Line intensity changes with lamp current, gas pressure, cathode condition, warm-up time, age, optical throughput, blaze efficiency, detector sensitivity, and exposure duration. NIST explicitly cautions that atlas intensities depend strongly on lamp operating conditions. A strong peak in the EXOhSPEC frame is therefore not automatically argon, and a weak peak is not automatically thorium. Species identification must be based on wavelength agreement, line isolation, and consistency with a global dispersion solution.
+
+### 2.4 Blends and the instrumental line profile
+
+The detector does not record an infinitely narrow atomic transition. It records the transition convolved with the spectrograph line-spread function and sampled by pixels. Two nearby transitions can form a blend. A saturated feature can flatten, broaden, or acquire an unreliable centroid. Scattered light changes the local baseline, while asymmetry in the instrumental profile can shift a simple Gaussian fit. High-quality wavelength calibration selects isolated, unsaturated features or explicitly models these effects.
 
 ## 3. Why thorium and argon are useful
 
@@ -132,11 +162,25 @@ Mild Gaussian smoothing is followed by a local-maximum filter and a high-percent
 
 ## 7. Reading the measured detector image
 
+The supplied FITS frame is a two-dimensional echellogram, not a finished one-dimensional spectrum. Dispersion acts primarily along an order; cross-dispersion separates neighbouring orders. The public view below rotates the detector crop into a conventional landscape presentation so that these two roles are easier to see.
+
+![Provisional detector orientation](figures/detector-orientation.png)
+
+**Figure 2a.** Zoomed-out, rotated measured format with provisional dispersion and cross-dispersion directions. Rotation changes presentation only. The sign of increasing wavelength is not assigned until the optical model or a known reference feature confirms it.
+
 ![Annotated measured detector frame](figures/annotated-detector-map.png)
 
-**Figure 2.** High-contrast reading guide generated from the measured HDR derivative. Bright compact features are emission-line images. Extended high-signal structures require saturation checks. Diffuse structure is part of the measured background. Repeated loci are candidate echelle traces, but order numbering requires a trace solution.
+**Figure 2b.** High-contrast reading guide generated from the measured HDR derivative. Bright compact features are emission-line images. Extended high-signal structures require saturation checks. Diffuse structure is part of the measured background. Repeated loci are candidate echelle traces, but order numbering requires a trace solution.
 
 The display uses an inverse-hyperbolic-sine stretch. A linear stretch would be dominated by a small number of bright pixels and would hide most faint structure. The stretch changes display contrast only; quantitative calculations use linear detector values.
+
+### 7.1 The visible diffuse component
+
+The broad pale area in the upper part of the portrait view becomes a left-side diffuse feature after the landscape rotation. It is real recorded structure, but it is not by itself an atomic emission line. Plausible contributors include scattered light, illumination gradients, order wings, reflections, and other instrument-background terms. The current report subtracts a robust global pedestal for exposure comparison. A wavelength-extraction pipeline should instead fit the inter-order background locally as a smooth two-dimensional surface and propagate the background uncertainty into every extracted pixel.
+
+### 7.2 What should be measured for each feature
+
+For a usable line, the analysis should record centroid, integrated area, peak height, full width at half maximum, asymmetry, local background, uncertainty, saturation flag, blend flag, order number, and detector position. The centroid constrains wavelength. Width and asymmetry diagnose the line-spread function. Integrated area is often more stable than peak height for comparing unsaturated lines. None of these quantities should be taken from the display-stretched image.
 
 ## 8. Quantitative results
 
@@ -223,6 +267,28 @@ A real Th-Ar wavelength atlas for the current EXOhSPEC format requires the follo
 12. only then publish wavelength-labelled order plots and atomic identifications.
 
 A polynomial with a small global residual can still be wrong locally. Diagnostic plots should therefore show signed residuals versus detector position, wavelength, order, and feature intensity. The line list, air/vacuum convention, wavelength units, fitting weights, clipping policy, and date/version must be recorded.
+
+### 10.1 Reference-line provenance
+
+NIST SRD 161 combines thorium and argon measurements from several high-resolution Fourier-transform spectra. NIST recommends optimized thorium Ritz wavelengths where appropriate, while noting that blended atlas features may need to be rejected or modelled from their Ritz components. Ar I reference values in the atlas are measured wavelengths; Ar II and Ar III include Ritz information from the cited sources. The public database covers 277–6288 nm across its constituent spectra, much wider than any one EXOhSPEC detector exposure.
+
+The atlas is a reference library, not an automatic label overlay. Matching begins only after each order has an approximate wavelength range. A visually similar spacing pattern is insufficient because a dense line list creates accidental matches.
+
+### 10.2 Iterative pattern matching
+
+For a candidate feature at pixel \(x_i\), an initial model predicts \(\lambda_0(x_i,m)\) for order \(m\). Reference lines within a physically chosen search window are proposed, after which a robust global fit updates the model. Matches with large normalized residuals, saturation, blends, poor background, or inconsistent order behaviour are rejected. The process repeats with progressively narrower tolerances.
+
+The fitting weights should combine centroid uncertainty and reference-wavelength uncertainty. A simple one-order seed may use
+
+\[
+\lambda(x)=a_0+a_1x+a_2x^2+\cdots,
+\]
+
+while the final echelle solution should couple position and order number through \(\lambda(x,m)\) or a physical model. The chosen form must be complex enough to capture the optics but not so flexible that it fits incorrect line matches.
+
+### 10.3 Validation products
+
+A future labelled atlas should publish, for each order, the extracted intensity, species-coded reference sticks, fitted centroids, rejected features, and a residual panel. Summary diagnostics should include line count per order, RMS and robust residuals, maximum residual, residual maps versus position and wavelength, the air/vacuum convention, line-list version, polynomial form, clipping rule, and performance on lines withheld from fitting. Only then should the two-dimensional detector overview carry order numbers and a verified wavelength-increase arrow.
 
 ## 11. Limitations
 

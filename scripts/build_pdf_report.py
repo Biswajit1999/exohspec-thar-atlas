@@ -213,11 +213,26 @@ def build() -> Path:
     story += [_p(
         "A Th-Ar lamp is a hollow-cathode discharge source. Argon ions bombard a thorium-bearing cathode and sputter thorium into the discharge. Collisions excite neutral and ionized species. Radiative relaxation produces photons at discrete energies, creating narrow emission features.", styles["body"])]
     story += _figure(
-        "emission-vs-absorption.png", 161, 99.5,
-        "Figure 1. Conceptual distinction between emission peaks and absorption deficits. The wavelength values are illustrative and are not measured EXOhSPEC line assignments.", styles,
+        "concept-thar-lamp.png", 161, 88.3,
+        "Figure 1. AI-generated conceptual illustration of a Th-Ar lamp feeding a generic spectrograph entrance. It is not a photograph, engineering drawing, or representation of the private EXOhSPEC laboratory.", styles,
     )
     story += [_p(
-        "An emission line is a positive peak because the source adds photons at a transition wavelength. An absorption line is a deficit below a continuum because intervening matter removes photons. The EXOhSPEC lamp frame contains emission-line images; a stellar spectrum commonly contains absorption structure.", styles["body"])]
+        "The fill gas allows a discharge to form at low pressure. Positive argon ions accelerate toward the cathode and transfer momentum to its surface, releasing thorium atoms by sputtering. Electrons and ions then excite and ionize both species. The visible output is therefore a mixture of neutral and ionized thorium and argon transitions.", styles["body"])]
+    story += _figure(
+        "concept-thar-emission-process.png", 161, 80.4,
+        "Figure 2. AI-generated conceptual sequence of argon-ion bombardment, thorium sputtering, excitation, and discrete photon emission. The artwork is explanatory rather than a literal cross-section.", styles,
+    )
+    story += [PageBreak(), _p("2.1 Emission lines versus absorption lines", styles["h2"])]
+    story += _figure(
+        "emission-vs-absorption.png", 161, 99.5,
+        "Figure 3. Conceptual distinction between emission peaks and absorption deficits. The wavelength values are illustrative and are not measured EXOhSPEC line assignments.", styles,
+    )
+    story += [_p(
+        "An emission line is a positive peak because the source adds photons at a transition wavelength. An absorption line is a deficit below a continuum because intervening matter removes photons. The EXOhSPEC lamp frame contains emission-line images; a stellar spectrum commonly contains absorption structure.", styles["body"]),
+        _p(
+        "A transition from upper energy E_u to lower energy E_l emits a photon satisfying E_u - E_l = h nu = hc / lambda. Th I, Th II, and Th III denote neutral, singly ionized, and doubly ionized thorium; Ar I, Ar II, and Ar III use the same charge-state convention. Roman numerals do not describe brightness.", styles["body"]),
+        _p(
+        "The detector records each transition convolved with the spectrograph line-spread function and pixel response. A measured feature therefore has a centroid, width, integrated area, peak height, local background, and uncertainty. Blends, saturation, background gradients, and asymmetry can bias the centroid used for calibration.", styles["body"])]
 
     story += _heading("3", "Why thorium and argon are used", styles)
     story += [_p(
@@ -230,10 +245,17 @@ def build() -> Path:
 
     story += _heading("4", "Reading the measured EXOhSPEC detector frame", styles)
     story += [_p(
-        "The image below is derived from the measured exposure set. An inverse-hyperbolic-sine display stretch makes weak structure visible while retaining bright features. Quantitative calculations use linear detector values; the stretch affects appearance only.", styles["body"])]
+        "The supplied FITS exposure is a two-dimensional echellogram, not a finished one-dimensional plot. Dispersion acts along a traced order; cross-dispersion separates neighbouring orders. The landscape presentation below makes these two roles explicit while keeping the sign of increasing wavelength unassigned.", styles["body"])]
+    story += _figure(
+        "detector-orientation.png", 161, 87.6,
+        "Figure 4. Zoomed-out, rotated measured detector format. The arrows show provisional dispersion and cross-dispersion directions. Rotation changes presentation only; the wavelength-increase direction requires calibration.", styles,
+    )
+    story += [_p(
+        "The broad pale region is diffuse recorded illumination, not an identified atomic line. Possible contributors include scattered light, order wings, reflections, and a spatially varying background. A final extraction should fit a local two-dimensional inter-order background and propagate its uncertainty.", styles["body"]), PageBreak(), _p("4.1 Detector morphology in detail", styles["h2"]), _p(
+        "An inverse-hyperbolic-sine display stretch reveals weak structure while retaining bright features. Quantitative calculations use linear detector values; the stretch affects appearance only.", styles["body"])]
     story += _figure(
         "annotated-detector-map.png", 125, 159,
-        "Figure 2. Measured detector morphology with a reading guide. Bright compact features are emission-line images. Repeated loci are candidate echelle traces, but order numbering and wavelengths require calibration.", styles,
+        "Figure 5. Measured detector morphology with a reading guide. Bright compact features are emission-line images. Repeated loci are candidate echelle traces, but order numbering and wavelengths require calibration.", styles,
     )
     story += [PageBreak()]
 
@@ -281,7 +303,7 @@ def build() -> Path:
         "The background pedestal changes by only 6 ADU across the sequence. Visible structure increases with exposure, but the near-ceiling population rises from 1 to 121 pixels. The integrated values remain close to the ideal exposure ratios 1:2:4:6.", styles["body"])]
     story += _figure(
         "detector-diagnostics.png", 150, 112.5,
-        "Figure 3. Detector pedestal, visible structure, near-ceiling population, and integrated unsaturated response. The common-mask response gives R<super>2</super> = 0.999276.", styles,
+        "Figure 6. Detector pedestal, visible structure, near-ceiling population, and integrated unsaturated response. The common-mask response gives R<super>2</super> = 0.999276.", styles,
     )
     story += [PageBreak()]
 
@@ -290,11 +312,11 @@ def build() -> Path:
         "Translation estimates relative to the 120 s frame are (-0.070, -0.012), (-0.065, -0.017), (0, 0), and (-0.045, -0.019) pixels in (y, x) for 30, 60, 120, and 180 s. The maximum magnitude is 0.071 pixel. These values show consistency under the algorithm, not a full uncertainty budget.", styles["body"])]
     story += _figure(
         "registration-shifts.png", 150, 75.8,
-        "Figure 4. Phase-correlation shifts relative to 120 s after four-pixel block averaging.", styles,
+        "Figure 7. Phase-correlation shifts relative to 120 s after four-pixel block averaging.", styles,
     )
     story += _figure(
         "representative-profiles.png", 161, 114.2,
-        "Figure 5. Representative detector-space profiles with asinh-scaled intensity. The horizontal coordinate is normalized detector position, not wavelength.", styles,
+        "Figure 8. Representative detector-space profiles with asinh-scaled intensity. The horizontal coordinate is normalized detector position, not wavelength.", styles,
     )
     story += [PageBreak()]
 
@@ -331,6 +353,16 @@ def build() -> Path:
     story += [_bullet(f"{i}. {text}", styles) for i, text in enumerate(calibration_steps, 1)]
     story += [_p(
         "A small global polynomial residual is not sufficient evidence of a correct solution. Local residual structure, blends, air-versus-vacuum convention, reference-list version, weights, and clipping rules must all be documented. Until this chain is complete, a wavelength axis in angstroms would be scientifically misleading.", styles["body"])]
+    story += [PageBreak(), _p("9.1 Reference-line provenance and charge states", styles["h2"]), _p(
+        "NIST SRD 161 combines multiple high-resolution Fourier-transform spectra and covers 277-6288 nm across its constituent observations. It provides more than 20,000 thorium reference wavelengths. NIST recommends optimized thorium Ritz wavelengths where appropriate and warns that blended atlas features should be ignored or modelled from their components. Ar I values in the atlas are measured wavelengths; Ar II and Ar III draw on the cited Ritz information.", styles["body"]),
+        _p(
+        "The reference atlas is a library, not an automatic label overlay. A strong detector peak is not automatically argon, and a weak peak is not automatically thorium. Intensity depends on lamp current, pressure, age, cathode condition, spectrograph throughput, blaze response, detector sensitivity, and exposure time.", styles["body"]),
+        _p("9.2 Iterative matching", styles["h2"]), _p(
+        "For candidate position x_i in order m, a seed model predicts an approximate wavelength. Reference lines within a physically chosen search window are proposed, a robust global fit updates the model, and inconsistent matches are rejected. Tolerances should narrow as the solution improves. Weights should combine centroid and reference-wavelength uncertainty.", styles["body"]),
+        _p(
+        "A one-order seed can use lambda(x) = a0 + a1 x + a2 x^2 + ..., while the final cross-dispersed solution should couple detector position and order number through lambda(x,m) or a physical model. The model must capture the optics without becoming flexible enough to fit incorrect matches.", styles["body"]),
+        _p("9.3 Validation products", styles["h2"]), _p(
+        "A future labelled atlas should show extracted intensity, species-coded reference sticks, fitted centroids, rejected blends, and a residual panel for every order. It should report line counts, RMS and robust residuals, maximum residual, residual maps versus position and wavelength, air/vacuum convention, line-list version, polynomial form, clipping rule, and performance on lines withheld from fitting.", styles["body"])]
     story += _heading("10", "Limitations", styles)
     limitations = [
         "Only one frame exists at each duration; fixed-exposure repeatability is unknown.",

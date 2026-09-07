@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="Scientific detector-domain analysis of four EXOhSPEC thorium-argon exposures." />
     <title>EXOhSPEC Th-Ar Detector Study</title>
-    <link rel="stylesheet" href="styles.css?v=3" />
-    <script src="app.js?v=3" defer></script>
+    <link rel="stylesheet" href="styles.css?v=4" />
+    <script src="app.js?v=4" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
@@ -29,7 +29,7 @@
               <h1>Detector-domain characterization of thorium-argon calibration exposures</h1>
               <p class="authors">Biswajit Jana · EXOhSPEC instrumentation study</p>
               <p class="affiliation">University of Hertfordshire · Exoplanet high-resolution spectroscopy</p>
-              <a class="pdf-link" href="exohspec-thar-detector-study.pdf">Download the 11-page technical report (PDF)</a>
+              <a class="pdf-link" href="exohspec-thar-detector-study.pdf">Download the expanded technical report (PDF)</a>
             </div>
             <dl class="metadata">
               <div><dt>Instrument</dt><dd>EXOhSPEC</dd></div>
@@ -45,6 +45,10 @@
               Four thorium-argon lamp frames were compared to determine the exposure regime that best preserves bright-line headroom while revealing faint structure. The unsaturated integrated response is close to proportional to exposure time (<i>R</i><sup>2</sup> = <span data-metric="r2">0.9993</span>), while the population above 60,000 ADU rises from 1 pixel at 30 s to 121 pixels at 180 s. Translational registration is stable within an estimated <span data-metric="shift">0.071</span> native pixel under a phase-correlation model. A 120 s frame is therefore the strongest single-exposure compromise; a four-frame HDR estimator is preferred for visualization and detector-domain feature finding. No atomic wavelengths are assigned because a validated order trace and dispersion solution are not yet available.
             </p>
           </section>
+          <figure class="concept-hero">
+            <img src="assets/concept-thar-lamp.png" width="1692" height="929" alt="Conceptual illustration of a glowing thorium-argon hollow-cathode lamp feeding light into a generic spectrograph slit." />
+            <figcaption><b>Conceptual overview.</b> AI-generated educational illustration of a hollow-cathode lamp and spectrograph entrance. It is not a photograph, engineering drawing, or representation of the private EXOhSPEC laboratory layout.</figcaption>
+          </figure>
         </header>
 
         <section class="results-strip" aria-label="Principal findings">
@@ -61,9 +65,18 @@
             <p class="lead">
               The stretch below is intentionally stronger than a conventional linear display. It exposes faint features, structured background, bright cores, and the geometry of the recorded format on the same panel.
             </p>
+            <div class="prose">
+              <h3>What the camera records</h3>
+              <p>An echelle exposure is not initially a familiar one-dimensional graph. The detector receives many curved spectral orders at once. Position along an order is the dispersion coordinate; displacement between neighbouring orders is the cross-dispersion coordinate. Each compact bright spot is the two-dimensional image of a narrow lamp feature convolved with the spectrograph line-spread function and detector sampling.</p>
+              <p>The broad pale region visible in the 120 s/HDR display is diffuse detector illumination rather than a newly identified atomic feature. Possible contributors include scattered light, order wings, reflections, and spatially varying background. The public analysis measures and subtracts a robust global pedestal, but a final extraction should fit a local two-dimensional inter-order background rather than treating the diffuse component as signal.</p>
+            </div>
+            <figure class="figure wide-figure">
+              <img src="assets/detector-orientation.png" width="2375" height="1292" alt="Landscape orientation of the measured EXOhSPEC thorium-argon spectral format with arrows showing provisional dispersion and cross-dispersion directions." />
+              <figcaption><b>Figure 1.</b> Zoomed-out landscape presentation of the measured detector format. Dispersion runs along a traced order; cross-dispersion separates neighbouring orders. This is a display rotation, and the sign of increasing wavelength remains unassigned until trace and line matching are validated.</figcaption>
+            </figure>
             <figure class="figure">
               <img src="assets/annotated-detector-map.png" width="1615" height="2052" alt="Annotated high-contrast EXOhSPEC thorium-argon detector image showing emission-line images, high-signal features, background structure, and candidate echelle traces." />
-              <figcaption><b>Figure 1.</b> A reading guide drawn directly on the measured detector data. The annotations describe detector morphology only; trace numbering and wavelengths await calibration.</figcaption>
+              <figcaption><b>Figure 2.</b> A reading guide drawn directly on the measured detector data. The annotations describe detector morphology only; trace numbering and wavelengths await calibration.</figcaption>
             </figure>
             <figure class="figure dark-figure">
               <div class="figure-toolbar" role="group" aria-label="Select detector image">
@@ -71,7 +84,7 @@
                 <button class="image-choice" data-image="assets/spectral-format.webp" data-caption="Measured 120 second frame" aria-pressed="false">120 s frame</button>
               </div>
               <img id="detector-image" src="assets/hdr-spectrum.webp" width="1080" height="1500" alt="High-contrast monochrome view of the cropped thorium-argon detector format, with hundreds of bright emission features." />
-              <figcaption><b>Figure 2.</b> <span id="detector-caption">HDR relative signal-rate composite</span>. The image is a privacy-reviewed crop with an asinh display stretch. Bright points are measured detector features; they are not yet atomic identifications.</figcaption>
+              <figcaption><b>Figure 3.</b> <span id="detector-caption">HDR relative signal-rate composite</span>. The image is a privacy-reviewed crop with an asinh display stretch. Bright points are measured detector features; they are not yet atomic identifications.</figcaption>
             </figure>
           </div>
         </section>
@@ -98,12 +111,17 @@
                 </svg>
               </div>
               <div class="chart-note"><span class="line-swatch"></span><b id="series-label">HDR</b><span>asinh-scaled relative signal rate</span></div>
-              <figcaption><b>Figure 3.</b> Extracted profile from one representative detector band. The x-axis is normalized detector coordinate, not wavelength. A wavelength in angstroms would be scientifically misleading before line matching and a dispersion solution.</figcaption>
+              <figcaption><b>Figure 4.</b> Extracted profile from one representative detector band. The x-axis is normalized detector coordinate, not wavelength. A wavelength in angstroms would be scientifically misleading before line matching and a dispersion solution.</figcaption>
             </figure>
             <figure class="figure">
               <img src="assets/representative-profiles.png" width="2090" height="1482" loading="lazy" alt="Three extracted detector-space profiles with multiple sharp emission peaks plotted on scientific axes." />
-              <figcaption><b>Figure 4.</b> Three representative bands selected for significant feature density. An asinh intensity transform reveals weaker peaks without claiming radiometric calibration.</figcaption>
+              <figcaption><b>Figure 5.</b> Three representative bands selected for significant feature density. An asinh intensity transform reveals weaker peaks without claiming radiometric calibration.</figcaption>
             </figure>
+            <div class="prose">
+              <h3>How to read a peak</h3>
+              <p>A real emission feature has a centroid, width, integrated area, peak height, and local background. The centroid provides the position used by a wavelength solution; the width reflects the instrumental profile and sampling; the area is usually more robust than peak height when comparing line strength. Saturation, blends, cosmic rays, and background gradients can bias all four quantities.</p>
+              <p>The plotted intensity is asinh-scaled for visibility. That transform preserves the ordering of intensities but is nonlinear, so visual peak heights must not be used as radiometric measurements. The untransformed pixel values remain the input to quantitative calculations.</p>
+            </div>
           </div>
         </section>
 
@@ -119,7 +137,7 @@
             </div>
             <figure class="figure">
               <img src="assets/detector-diagnostics.png" width="2160" height="1620" loading="lazy" alt="Four quantitative plots showing detector background, visible structure, near-ceiling pixels, and linear integrated response versus exposure time." />
-              <figcaption><b>Figure 5.</b> Detector diagnostics. Counts use a common privacy-safe crop except the separate full-scale diagnostic. Integrated response is evaluated on a common unsaturated source mask.</figcaption>
+              <figcaption><b>Figure 6.</b> Detector diagnostics. Counts use a common privacy-safe crop except the separate full-scale diagnostic. Integrated response is evaluated on a common unsaturated source mask.</figcaption>
             </figure>
             <div class="table-wrap" tabindex="0" aria-label="Scrollable exposure metrics table">
               <table>
@@ -135,7 +153,7 @@
             </div>
             <figure class="figure compact-figure">
               <img src="assets/registration-shifts.png" width="1710" height="864" loading="lazy" alt="Bar chart of estimated x and y translations for each exposure relative to the 120 second frame." />
-              <figcaption><b>Figure 6.</b> Translation estimates from phase correlation after four-pixel block averaging. Sub-pixel values should be interpreted as algorithmic estimates, not metrology-grade uncertainties.</figcaption>
+              <figcaption><b>Figure 7.</b> Translation estimates from phase correlation after four-pixel block averaging. Sub-pixel values should be interpreted as algorithmic estimates, not metrology-grade uncertainties.</figcaption>
             </figure>
           </div>
         </section>
@@ -145,19 +163,31 @@
           <div class="section-body prose">
             <h2 id="physics-title">Why a thorium-argon lamp works</h2>
             <figure class="figure">
+              <img src="assets/concept-thar-emission-process.png" width="1776" height="887" loading="lazy" alt="Conceptual process illustration showing argon ions bombarding a thorium cathode, sputtered atoms, excitation, and discrete emitted photons." />
+              <figcaption><b>Figure 8.</b> AI-generated conceptual illustration of the discharge process. Argon ions sustain the discharge and bombard the cathode; sputtered thorium and argon species are excited; radiative relaxation emits photons at discrete energies. The illustration is explanatory, not a literal lamp cross-section or measured result.</figcaption>
+            </figure>
+            <figure class="figure">
               <img src="assets/emission-vs-absorption.png" width="2090" height="1292" loading="lazy" alt="Conceptual scientific plots comparing narrow emission peaks against absorption dips in a continuum." />
-              <figcaption><b>Figure 7.</b> Conceptual distinction between emission and absorption. Th-Ar is an emission calibration source: its lamp adds narrow bright features. A stellar absorption spectrum instead removes intensity from a continuum. The wavelengths in this teaching diagram are illustrative and are not measured EXOhSPEC line assignments.</figcaption>
+              <figcaption><b>Figure 9.</b> Conceptual distinction between emission and absorption. Th-Ar is an emission calibration source: its lamp adds narrow bright features. A stellar absorption spectrum instead removes intensity from a continuum. The wavelengths in this teaching diagram are illustrative and are not measured EXOhSPEC line assignments.</figcaption>
             </figure>
             <h3>Hollow-cathode emission</h3>
             <p>An electrical discharge in low-pressure argon creates energetic ions and electrons. Ion bombardment releases thorium from the cathode by sputtering; collisions excite neutral and ionized species. Radiative de-excitation then produces narrow emission features. The pattern acts as a ruler only when detector centroids are matched to independently measured reference wavelengths.</p>
+            <h3>From energy levels to a line forest</h3>
+            <p>Atoms and ions possess quantized electronic energy levels. A transition from an upper level of energy E<sub>u</sub> to a lower level E<sub>l</sub> releases a photon with E<sub>u</sub> − E<sub>l</sub> = hν = hc/λ. Thorium has a complicated electronic structure and therefore a very large number of allowed transitions. On an echelle detector those wavelengths are redistributed into many orders, producing the dense field of compact features seen in the FITS frame.</p>
+            <p>“Th I”, “Th II”, and “Th III” denote neutral, singly ionized, and doubly ionized thorium; the corresponding argon notation is Ar I, Ar II, and Ar III. These labels describe charge state, not line strength. A bright line is not automatically argon and a faint line is not automatically thorium.</p>
             <h3>Why thorium is useful</h3>
             <p>Thorium produces a dense optical line spectrum. NIST Standard Reference Database 161 includes reference wavelengths for more than 20,000 Th I, Th II, and Th III features, drawing on high-resolution Fourier-transform measurements. The dominant terrestrial isotope, <sup>232</sup>Th, has a 1.40 × 10<sup>10</sup> year half-life; its dominance reduces the isotopic complexity encountered in many other elements.</p>
             <h3>Why argon is present</h3>
             <p>Argon sustains the discharge and produces additional Ar I, Ar II, and Ar III features. Some argon lines can be extremely strong, which helps acquisition but creates dynamic-range and contamination problems. The exposure ladder demonstrates that conflict directly: sensitivity to faint structure improves while bright cores approach full scale.</p>
+            <h3>Why line intensities are not universal</h3>
+            <p>Relative intensity depends on lamp current, pressure, cathode condition, temperature, ageing, spectrograph throughput, blaze response, detector sensitivity, and exposure time. NIST therefore advises caution when comparing intensities measured under different operating conditions. Reference wavelength is the calibration quantity; apparent brightness is mainly a selection and quality-control quantity.</p>
+            <h3>Blends, saturation, and line-shape effects</h3>
+            <p>Two transitions closer than the instrument can resolve form a blend whose measured centroid depends on their relative strengths. A saturated core can flatten or broaden and shift a fitted centre. Scattered light raises the local baseline, while an asymmetric line-spread function can pull a simple Gaussian centroid. Calibration pipelines reject or model these cases rather than forcing every visible peak into the solution.</p>
             <h3>Abundance and availability</h3>
             <p>Thorium is naturally distributed through crustal minerals rather than being an artificial laboratory element. USGS estimates about 10.5 mg kg<sup>-1</sup> in the upper continental crust, with monazite an important source mineral. Argon is far more accessible: NOAA gives 0.934% by volume in dry air, and atmospheric argon is about 99.6% <sup>40</sup>Ar. Geological abundance does not determine spectral usefulness; the relevant properties are line density, wavelength accuracy, intensity distribution, and stability.</p>
             <h3>Astronomical applications</h3>
             <p>Th-Ar exposures establish an absolute wavelength scale, monitor instrumental drift, support radial-velocity measurements, and diagnose spectral-format changes. In exoplanet spectroscopy, an apparent Doppler shift is meaningful only if detector motion and wavelength calibration are controlled well below the stellar signal being sought. Modern systems may combine Th-Ar absolute anchors with dense Fabry-Perot references or laser-frequency combs.</p>
+            <aside class="science-note"><b>Reference atlas versus this exposure.</b> NIST SRD 161 spans 277–6288 nm across multiple Fourier-transform spectra and provides more than 20,000 thorium reference wavelengths. That library tells us which transitions exist; it does not tell us which uncalibrated detector spot is which. The matching step must use the EXOhSPEC order geometry and an approximate dispersion model.</aside>
           </div>
         </section>
 
@@ -181,17 +211,40 @@
             </aside>
             <h3>What is still required for wavelength calibration</h3>
             <p>A scientifically defensible wavelength solution needs traced orders, extracted one-dimensional spectra, an approximate dispersion model, matching to NIST reference lines, blend and outlier rejection, a two-dimensional polynomial or physical dispersion solution, and residual analysis by order and wavelength. Until this chain is complete, the project does not label peaks as Th I, Th II, Ar I, or any wavelength in angstroms.</p>
+            <h3>From detector coordinate to wavelength</h3>
+            <p>For one order, an initial model may write λ(x) = a<sub>0</sub> + a<sub>1</sub>x + a<sub>2</sub>x² + … . A cross-dispersed echelle solution is better treated globally as λ(x,m), where x is position along the order and m is order number. Reference-line centroids constrain the coefficients; withheld lines test predictive performance. Residuals must be examined versus wavelength, order, intensity, and detector position rather than reduced to one RMS number.</p>
+            <h3>Why the wavelength direction is still provisional</h3>
+            <p>The landscape figure establishes a useful display convention from the visible trace morphology, but it does not assign whether wavelength increases left-to-right or right-to-left. That sign follows from a known reference feature or the optical model. Publishing a confident arrow before that check would turn a presentation choice into a false calibration claim.</p>
+          </div>
+        </section>
+
+        <section class="paper-section" id="interpretation" aria-labelledby="interpretation-title">
+          <div class="section-number">6</div>
+          <div class="section-body prose">
+            <h2 id="interpretation-title">How atomic lines will be identified</h2>
+            <p>Line identification is a constrained pattern-matching problem, not a visual lookup. A seed model predicts an approximate wavelength for each extracted pixel. Candidate centroids are compared with a versioned reference list, using uncertainty and expected resolving power to set a tolerance. The algorithm then fits the global wavelength solution, rejects inconsistent matches, and repeats until the residual structure is stable.</p>
+            <div class="finding-grid">
+              <article><h3>Thorium candidates</h3><p>Prefer isolated Th I–III Ritz wavelengths with small uncertainties and useful intensities. Dense thorium structure gives many anchors but also raises the probability of blends.</p></article>
+              <article><h3>Argon candidates</h3><p>Ar I–III lines can be conspicuous and useful, yet strong carrier-gas lines may be pressure-sensitive or saturated. Their role must be documented rather than assumed.</p></article>
+              <article><h3>Rejected features</h3><p>Cosmic rays, ghosts, blends, flat-topped cores, poor-background regions, edge features, and large-residual matches should be flagged and excluded or modelled explicitly.</p></article>
+              <article><h3>Validation</h3><p>Report per-order line counts, RMS and robust residuals, residual maps, the air/vacuum convention, reference-list version, polynomial form, and held-out-line performance.</p></article>
+            </div>
+            <h3>Why this report does not mark individual Th or Ar lines yet</h3>
+            <p>The Google examples are already wavelength-calibrated atlases. This FITS study currently has detector coordinates only. Adding labels such as “Th I 550.4 nm” to a visually nearby spot would be an unsupported guess. The present report instead shows the anatomy of an emission spectrum, the measured line-like morphology, and the exact procedure required before those labels become defensible.</p>
+            <h3>What a future labelled figure will contain</h3>
+            <p>Each order panel will show extracted intensity versus wavelength, a species-coded reference stick spectrum, fitted centroids, rejected blends, and a residual panel in wavelength or velocity units. The two-dimensional overview will carry order numbers and a verified increasing-wavelength arrow. This design reproduces the useful elements of professional atlas examples without copying their imagery or confusing reference data with EXOhSPEC measurements.</p>
           </div>
         </section>
 
         <section class="paper-section" id="references" aria-labelledby="references-title">
-          <div class="section-number">6</div>
+          <div class="section-number">7</div>
           <div class="section-body references">
             <h2 id="references-title">References and data provenance</h2>
             <ol>
               <li>Lhospice, E. et al. (2019). <a href="https://uhra.herts.ac.uk/id/eprint/14227/1/20190626_ProcSPIE_EXOhSPEC_V3.pdf">EXOhSPEC folded design optimization and performance estimation</a>. Proceedings of SPIE.</li>
               <li>University of Hertfordshire. <a href="https://star.herts.ac.uk/exohspec/">EXOhSPEC project page</a>.</li>
               <li>Nave, G. et al. <a href="https://www.nist.gov/pml/spectrum-th-ar-hollow-cathode-lamps">Spectrum of Th-Ar Hollow Cathode Lamps</a>. NIST SRD 161, DOI 10.18434/T4S01V.</li>
+              <li>NIST. <a href="https://www.nist.gov/pml/spectrum-th-ar-hollow-cathode-lamps/spectrum-th-ar-hollow-cathode-lamps-line-lists">SRD 161 line-list provenance and Ritz-wavelength guidance</a>.</li>
               <li>Redman, S. L., Nave, G. &amp; Sansonetti, C. J. (2014). <a href="https://doi.org/10.1088/0067-0049/211/1/4">The Spectrum of Thorium from 250 nm to 5500 nm</a>. ApJS 211(1).</li>
               <li>Errmann, R. et al. (2020). <a href="https://doi.org/10.1088/1538-3873/ab8783">HiFLEx: A Highly Flexible Package to Reduce Cross-dispersed Echelle Spectra</a>. PASP 132, 064504.</li>
               <li>USGS. <a href="https://pubs.usgs.gov/sir/2017/5118/elements/Thorium/Th_txt.html">Thorium in the upper continental crust and soils</a>.</li>
