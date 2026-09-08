@@ -179,6 +179,10 @@
               <img src="assets/emission-vs-absorption.png" width="2090" height="1292" loading="lazy" alt="Conceptual scientific plots comparing narrow emission peaks against absorption dips in a continuum." />
               <figcaption><b>Figure 9.</b> Conceptual distinction between emission and absorption. Th-Ar is an emission calibration source: its lamp adds narrow bright features. A stellar absorption spectrum instead removes intensity from a continuum. The wavelengths in this teaching diagram are illustrative and are not measured EXOhSPEC line assignments.</figcaption>
             </figure>
+            <figure class="figure">
+              <img src="assets/thar-visible-reference-lines.png" width="2492" height="1546" loading="lazy" alt="Species-coded NIST reference sticks for prominent Th I, Th II, Ar I, and Ar II lines between 380 and 750 nanometres, with a violet-blue to red wavelength band." />
+              <figcaption><b>Figure 10.</b> Selected prominent NIST reference lines across the visible range. Thorium and argon are separated so their contributions can be read directly. The left side is violet/blue and the right side is red. Strengths are normalized within each species panel and do not predict this lamp's measured brightness.</figcaption>
+            </figure>
             <h3>Hollow-cathode emission</h3>
             <p>An electrical discharge in low-pressure argon creates energetic ions and electrons. Ion bombardment releases thorium from the cathode by sputtering; collisions excite neutral and ionized species. Radiative de-excitation then produces narrow emission features. The pattern acts as a ruler only when detector centroids are matched to independently measured reference wavelengths.</p>
             <h3>From energy levels to a line forest</h3>
@@ -190,13 +194,14 @@
             <p>Argon sustains the discharge and produces additional Ar I, Ar II, and Ar III features. Some argon lines can be extremely strong, which helps acquisition but creates dynamic-range and contamination problems. The exposure ladder demonstrates that conflict directly: sensitivity to faint structure improves while bright cores approach full scale.</p>
             <h3>Why line intensities are not universal</h3>
             <p>Relative intensity depends on lamp current, pressure, cathode condition, temperature, ageing, spectrograph throughput, blaze response, detector sensitivity, and exposure time. NIST therefore advises caution when comparing intensities measured under different operating conditions. Reference wavelength is the calibration quantity; apparent brightness is mainly a selection and quality-control quantity.</p>
+            <p><b>Blue side versus red side.</b> Wavelength increases from the violet/blue side toward the red side in Figure 10. Both thorium and argon occur across the visible interval, so colour alone cannot identify the emitting element. Agreement with a laboratory reference wavelength identifies the species; Th I, Th II, Ar I, and Ar II state the element and ionization stage.</p>
             <h3>Blends, saturation, and line-shape effects</h3>
             <p>Two transitions closer than the instrument can resolve form a blend whose measured centroid depends on their relative strengths. A saturated core can flatten or broaden and shift a fitted centre. Scattered light raises the local baseline, while an asymmetric line-spread function can pull a simple Gaussian centroid. Calibration pipelines reject or model these cases rather than forcing every visible peak into the solution.</p>
             <h3>Abundance and availability</h3>
             <p>Thorium is naturally distributed through crustal minerals rather than being an artificial laboratory element. USGS estimates about 10.5 mg kg<sup>-1</sup> in the upper continental crust, with monazite an important source mineral. Argon is far more accessible: NOAA gives 0.934% by volume in dry air, and atmospheric argon is about 99.6% <sup>40</sup>Ar. Geological abundance does not determine spectral usefulness; the relevant properties are line density, wavelength accuracy, intensity distribution, and stability.</p>
             <h3>Astronomical applications</h3>
             <p>Th-Ar exposures establish an absolute wavelength scale, monitor instrumental drift, support radial-velocity measurements, and diagnose spectral-format changes. In exoplanet spectroscopy, an apparent Doppler shift is meaningful only if detector motion and wavelength calibration are controlled well below the stellar signal being sought. Modern systems may combine Th-Ar absolute anchors with dense Fabry-Perot references or laser-frequency combs.</p>
-            <aside class="science-note"><b>Reference atlas versus this exposure.</b> NIST SRD 161 spans 277–6288 nm across multiple Fourier-transform spectra and provides more than 20,000 thorium reference wavelengths. That library tells us which transitions exist; it does not tell us which uncalibrated detector spot is which. The matching step must use the EXOhSPEC order geometry and an approximate dispersion model.</aside>
+            <aside class="science-note"><b>How to read the two kinds of figure.</b> Figure 10 is a wavelength-labelled atomic reference guide. Figures 1–7 are derived from the supplied detector images. The reference guide explains which thorium and argon transitions exist; the measured images show where light fell on this detector.</aside>
           </div>
         </section>
 
@@ -247,6 +252,7 @@
               <li>University of Hertfordshire. <a href="https://star.herts.ac.uk/exohspec/">EXOhSPEC project page</a>.</li>
               <li>Nave, G. et al. <a href="https://www.nist.gov/pml/spectrum-th-ar-hollow-cathode-lamps">Spectrum of Th-Ar Hollow Cathode Lamps</a>. NIST SRD 161, DOI 10.18434/T4S01V.</li>
               <li>NIST. <a href="https://www.nist.gov/pml/spectrum-th-ar-hollow-cathode-lamps/spectrum-th-ar-hollow-cathode-lamps-line-lists">SRD 161 line-list provenance and Ritz-wavelength guidance</a>.</li>
+              <li>NIST. <a href="https://physics.nist.gov/asd">Atomic Spectra Database</a>. Source of the selected visible-range Th I, Th II, Ar I, and Ar II reference wavelengths in Figure 10.</li>
               <li>Redman, S. L., Nave, G. &amp; Sansonetti, C. J. (2014). <a href="https://doi.org/10.1088/0067-0049/211/1/4">The Spectrum of Thorium from 250 nm to 5500 nm</a>. ApJS 211(1).</li>
               <li>Errmann, R. et al. (2020). <a href="https://doi.org/10.1088/1538-3873/ab8783">HiFLEx: A Highly Flexible Package to Reduce Cross-dispersed Echelle Spectra</a>. PASP 132, 064504.</li>
               <li>USGS. <a href="https://pubs.usgs.gov/sir/2017/5118/elements/Thorium/Th_txt.html">Thorium in the upper continental crust and soils</a>.</li>

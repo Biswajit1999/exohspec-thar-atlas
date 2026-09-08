@@ -54,6 +54,12 @@ The result is a line-rich **emission spectrum**. It differs fundamentally from a
 
 **Figure 1c.** Conceptual comparison of emission and absorption signatures. The wavelength values are illustrative and are not EXOhSPEC line identifications.
 
+![Selected visible-range thorium and argon reference lines](figures/thar-visible-reference-lines.png)
+
+**Figure 1d.** Selected prominent NIST reference lines between 380 and 750 nm. The upper panel separates Th I and Th II; the lower panel separates Ar I and Ar II. The coloured strip runs from the shorter-wavelength violet/blue side to the longer-wavelength red side. Reference strengths are normalized within each species panel and are not a prediction of the brightness recorded by EXOhSPEC.
+
+Both elements contribute lines on the blue and red sides of the visible interval. Colour therefore does not determine whether a feature is thorium or argon. Identification follows from its laboratory wavelength and charge-state label: I denotes a neutral atom and II a singly ionized atom. The measured FITS frames have no validated pixel-to-wavelength solution, so Figure 1d is kept as a separate atomic reference guide rather than being overlaid on detector spots.
+
 ### 2.3 Why brightness alone cannot identify a species
 
 Line intensity changes with lamp current, gas pressure, cathode condition, warm-up time, age, optical throughput, blaze efficiency, detector sensitivity, and exposure duration. NIST explicitly cautions that atlas intensities depend strongly on lamp operating conditions. A strong peak in the EXOhSPEC frame is therefore not automatically argon, and a weak peak is not automatically thorium. Species identification must be based on wavelength agreement, line isolation, and consistency with a global dispersion solution.
@@ -295,11 +301,12 @@ During practical laboratory work on the EXOhSPEC project, **Biswajit Jana** reco
 1. Lhospice, E. et al. (2019). *EXOhSPEC folded design optimization and performance estimation*. Proceedings of SPIE. <https://uhra.herts.ac.uk/id/eprint/14227/1/20190626_ProcSPIE_EXOhSPEC_V3.pdf>
 2. University of Hertfordshire. *EXOhSPEC project page*. <https://star.herts.ac.uk/exohspec/>
 3. Nave, G. et al. *Spectrum of Th-Ar Hollow Cathode Lamps*. NIST SRD 161. <https://www.nist.gov/pml/spectrum-th-ar-hollow-cathode-lamps>
-4. Redman, S. L., Nave, G., and Sansonetti, C. J. (2014). “The Spectrum of Thorium from 250 nm to 5500 nm.” *ApJS*, 211(1). <https://doi.org/10.1088/0067-0049/211/1/4>
-5. Errmann, R. et al. (2020). “HiFLEx.” *PASP*, 132, 064504. <https://doi.org/10.1088/1538-3873/ab8783>
-6. Lovis, C. and Pepe, F. (2007). “A new list of thorium and argon spectral lines in the visible.” <https://arxiv.org/abs/astro-ph/0703412>
-7. USGS. *Thorium in the upper continental crust and soils*. <https://pubs.usgs.gov/sir/2017/5118/elements/Thorium/Th_txt.html>
-8. NOAA. *Composition of the atmosphere*. <https://prod-01-alb-www-noaa.woc.noaa.gov/jetstream/atmosphere>
-9. CIAAW. *Thorium*. <https://ciaaw.org/thorium.htm>
-10. NIST. *Isotopic composition for argon*. <https://physics.nist.gov/cgi-bin/Compositions/stand_alone.pl?ascii=ascii&ele=Ar>
-11. ESO. *ESPRESSO ThAr/FP/LFC wavelength-calibration quality control*. <https://www.eso.org/observing/dfo/quality/ESPRESSO/qc/waveThAr_qc1.html>
+4. NIST. *Atomic Spectra Database*. Source of the selected visible-range species guide. <https://physics.nist.gov/asd>
+5. Redman, S. L., Nave, G., and Sansonetti, C. J. (2014). “The Spectrum of Thorium from 250 nm to 5500 nm.” *ApJS*, 211(1). <https://doi.org/10.1088/0067-0049/211/1/4>
+6. Errmann, R. et al. (2020). “HiFLEx.” *PASP*, 132, 064504. <https://doi.org/10.1088/1538-3873/ab8783>
+7. Lovis, C. and Pepe, F. (2007). “A new list of thorium and argon spectral lines in the visible.” <https://arxiv.org/abs/astro-ph/0703412>
+8. USGS. *Thorium in the upper continental crust and soils*. <https://pubs.usgs.gov/sir/2017/5118/elements/Thorium/Th_txt.html>
+9. NOAA. *Composition of the atmosphere*. <https://prod-01-alb-www-noaa.woc.noaa.gov/jetstream/atmosphere>
+10. CIAAW. *Thorium*. <https://ciaaw.org/thorium.htm>
+11. NIST. *Isotopic composition for argon*. <https://physics.nist.gov/cgi-bin/Compositions/stand_alone.pl?ascii=ascii&ele=Ar>
+12. ESO. *ESPRESSO ThAr/FP/LFC wavelength-calibration quality control*. <https://www.eso.org/observing/dfo/quality/ESPRESSO/qc/waveThAr_qc1.html>

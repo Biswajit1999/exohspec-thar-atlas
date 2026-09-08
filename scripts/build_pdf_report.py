@@ -241,7 +241,13 @@ def build() -> Path:
         "Argon sustains the discharge and adds Ar I, Ar II, and Ar III features. Some carrier-gas lines are very strong. This is useful for acquisition but challenging for detector dynamic range: faint thorium structure may require an exposure that pushes bright cores toward the ceiling.", styles["body"]),
         _p(
         "USGS estimates about 10.5 mg kg<super>-1</super> thorium in upper continental crust. NOAA gives argon as about 0.934% by volume of dry air, dominated by argon-40. Abundance does not determine calibration quality; reference accuracy, line density, usable intensity, and stability do.", styles["body"]),
-        PageBreak()]
+        PageBreak(), _p("3.1 Thorium and argon from blue to red", styles["h2"])]
+    story += _figure(
+        "thar-visible-reference-lines.png", 161, 100,
+        "Figure 3b. Selected prominent NIST reference lines from 380 to 750 nm. Thorium and argon are separated by species; the colour strip runs from the violet/blue side to the red side. Strengths are normalized within each panel and do not predict this lamp's measured brightness.", styles,
+    )
+    story += [_p(
+        "Both thorium and argon contribute lines across the visible interval, so colour alone does not identify the element. Agreement with a laboratory wavelength identifies the species. Th I and Ar I are neutral atoms; Th II and Ar II are singly ionized atoms. Because the supplied FITS files have no validated wavelength solution, this atomic reference guide is kept separate from the measured detector spots.", styles["body"]), PageBreak()]
 
     story += _heading("4", "Reading the measured EXOhSPEC detector frame", styles)
     story += [_p(
@@ -395,14 +401,15 @@ def build() -> Path:
         "1. Lhospice, E. et al. (2019). <i>EXOhSPEC folded design optimization and performance estimation</i>. Proceedings of SPIE. <link href='https://uhra.herts.ac.uk/id/eprint/14227/1/20190626_ProcSPIE_EXOhSPEC_V3.pdf' color='#1e5e91'>Public manuscript</link>.",
         "2. University of Hertfordshire. <link href='https://star.herts.ac.uk/exohspec/' color='#1e5e91'>EXOhSPEC project page</link>.",
         "3. Nave, G. et al. <i>Spectrum of Th-Ar Hollow Cathode Lamps</i>. NIST SRD 161, DOI 10.18434/T4S01V. <link href='https://www.nist.gov/pml/spectrum-th-ar-hollow-cathode-lamps' color='#1e5e91'>NIST database</link>.",
-        "4. Redman, S. L., Nave, G., and Sansonetti, C. J. (2014). The Spectrum of Thorium from 250 nm to 5500 nm. <i>ApJS</i> 211(1). DOI 10.1088/0067-0049/211/1/4.",
-        "5. Errmann, R. et al. (2020). HiFLEx: A Highly Flexible Package to Reduce Cross-dispersed Echelle Spectra. <i>PASP</i> 132, 064504. DOI 10.1088/1538-3873/ab8783.",
-        "6. Lovis, C. and Pepe, F. (2007). A new list of thorium and argon spectral lines in the visible. <i>Astronomy and Astrophysics</i>.",
-        "7. US Geological Survey. <link href='https://pubs.usgs.gov/sir/2017/5118/elements/Thorium/Th_txt.html' color='#1e5e91'>Thorium in the upper continental crust and soils</link>.",
-        "8. NOAA National Weather Service. <link href='https://prod-01-alb-www-noaa.woc.noaa.gov/jetstream/atmosphere' color='#1e5e91'>Composition of the atmosphere</link>.",
-        "9. Commission on Isotopic Abundances and Atomic Weights. <link href='https://ciaaw.org/thorium.htm' color='#1e5e91'>Thorium isotopic composition</link>.",
-        "10. NIST. <link href='https://physics.nist.gov/cgi-bin/Compositions/stand_alone.pl?ascii=ascii&amp;ele=Ar' color='#1e5e91'>Atomic weights and isotopic compositions for argon</link>.",
-        "11. ESO. <link href='https://www.eso.org/observing/dfo/quality/ESPRESSO/qc/waveThAr_qc1.html' color='#1e5e91'>ESPRESSO wavelength-calibration quality control</link>.",
+        "4. NIST. <link href='https://physics.nist.gov/asd' color='#1e5e91'>Atomic Spectra Database</link>. Source of the selected visible-range Th I, Th II, Ar I, and Ar II wavelengths.",
+        "5. Redman, S. L., Nave, G., and Sansonetti, C. J. (2014). The Spectrum of Thorium from 250 nm to 5500 nm. <i>ApJS</i> 211(1). DOI 10.1088/0067-0049/211/1/4.",
+        "6. Errmann, R. et al. (2020). HiFLEx: A Highly Flexible Package to Reduce Cross-dispersed Echelle Spectra. <i>PASP</i> 132, 064504. DOI 10.1088/1538-3873/ab8783.",
+        "7. Lovis, C. and Pepe, F. (2007). A new list of thorium and argon spectral lines in the visible. <i>Astronomy and Astrophysics</i>.",
+        "8. US Geological Survey. <link href='https://pubs.usgs.gov/sir/2017/5118/elements/Thorium/Th_txt.html' color='#1e5e91'>Thorium in the upper continental crust and soils</link>.",
+        "9. NOAA National Weather Service. <link href='https://prod-01-alb-www-noaa.woc.noaa.gov/jetstream/atmosphere' color='#1e5e91'>Composition of the atmosphere</link>.",
+        "10. Commission on Isotopic Abundances and Atomic Weights. <link href='https://ciaaw.org/thorium.htm' color='#1e5e91'>Thorium isotopic composition</link>.",
+        "11. NIST. <link href='https://physics.nist.gov/cgi-bin/Compositions/stand_alone.pl?ascii=ascii&amp;ele=Ar' color='#1e5e91'>Atomic weights and isotopic compositions for argon</link>.",
+        "12. ESO. <link href='https://www.eso.org/observing/dfo/quality/ESPRESSO/qc/waveThAr_qc1.html' color='#1e5e91'>ESPRESSO wavelength-calibration quality control</link>.",
     ]
     story += [_p(ref, styles["ref"]) for ref in refs]
     story += [Spacer(1, 5 * mm), _p(

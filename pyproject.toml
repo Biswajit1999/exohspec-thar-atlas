@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "exohspec-thar-atlas"
 version = "0.1.0"
-description = "Privacy-aware analysis and public data story for EXOhSPEC thorium-argon exposures."
+description = "Scientific guide to thorium-argon spectral lines with reproducible FITS analysis."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
@@ -20,6 +20,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = ["pytest>=8.0", "ruff>=0.5"]
+reference = ["astroquery>=0.4.11"]
 
 [project.scripts]
 exohspec-thar = "exohspec_thar.cli:main"
