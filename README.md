@@ -1,15 +1,16 @@
-# EXOhSPEC Th-Ar Detector Study
+# Thorium-Argon Spectral Lines: A Scientific Guide and FITS Example
 
 [![Scientific report](https://img.shields.io/badge/live-scientific_report-102f52)](https://biswajit1999.github.io/exohspec-thar-atlas/)
 [![Publish scientific report](https://github.com/Biswajit1999/exohspec-thar-atlas/actions/workflows/pages.yml/badge.svg)](https://github.com/Biswajit1999/exohspec-thar-atlas/actions/workflows/pages.yml)
 ![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-1e5e91)
 [![MIT License](https://img.shields.io/badge/license-MIT-c56820)](LICENSE)
 
-A privacy-aware, reproducible study of four thorium-argon hollow-cathode lamp
-exposures recorded with EXOhSPEC and a ZWO CMOS-family detector. The project is
-written for a general audience while keeping the scientific boundary clear:
-detector features are not assigned atomic wavelengths until a wavelength
-solution has been validated.
+A general-audience scientific guide to thorium-argon hollow-cathode spectra,
+supported by privacy-reviewed FITS examples recorded during practical work on
+the EXOhSPEC project. It explains how the lamp works, why its bright features
+are emission lines, how thorium and argon contribute, and why astronomers use
+the pattern as a wavelength reference. Detector features are not assigned
+atomic wavelengths until a wavelength solution has been validated.
 
 **[Open the interactive scientific report →](https://biswajit1999.github.io/exohspec-thar-atlas/)**
 
@@ -28,7 +29,9 @@ thorium from the cathode. Excited neutral and ionized thorium and argon then emi
 photons at discrete wavelengths. A calibrated pattern can act as a wavelength
 ruler; an uncalibrated detector image cannot yet support atomic labels.
 
-This repository connects that physics to a real EXOhSPEC exposure sequence. It
+The project began with a simple question after recording several lamp spectra:
+what are all these bright lines, and how do they work? It connects that question
+to a real EXOhSPEC exposure sequence. It
 explains emission versus absorption, detector dispersion and cross-dispersion,
 dynamic-range selection, HDR composition, line morphology, reference-list
 matching, wavelength-solution validation, abundance, applications, and the
@@ -154,7 +157,7 @@ exposures trade bright-line headroom against faint-line visibility? A later
 release may add atomic labels only after order tracing and a validated
 pixel-to-wavelength model are available.
 
-NIST SRD 161 is the intended reference source for that future match. Its atlas
+NIST SRD 161 is the authoritative reference source for such matching. Its atlas
 contains more than 20,000 thorium reference wavelengths across multiple
 Fourier-transform spectra; the database does not automatically identify spots
 in this detector image.
@@ -184,10 +187,13 @@ supplied FITS exposure sequence.
 
 ## Acknowledgements
 
-The EXOhSPEC work was supervised by **Prof. Hugh Jones** (EXOhSPEC research) and
-**Prof. Bill Martin** (optics and laboratory) at the University of Hertfordshire.
-
-Analysis and public communication: **Biswajit Jana**.
+During practical laboratory work on the EXOhSPEC project, **Biswajit Jana**
+recorded several thorium-argon spectra and became interested in what the bright
+lines represent, how they are produced, and why they are useful. That curiosity
+led to this analysis and educational report. The author gratefully acknowledges
+**Prof. Hugh Jones** for supervision of the EXOhSPEC work and **Prof. Bill
+Martin** for guidance and supervision during the optics laboratory work at the
+University of Hertfordshire.
 
 ## Citation, license, and data
 

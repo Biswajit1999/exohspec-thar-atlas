@@ -139,8 +139,8 @@ def build() -> Path:
     frame = Frame(18 * mm, 21 * mm, width - 36 * mm, height - 44 * mm, id="main")
     doc = BaseDocTemplate(
         str(OUTPUT), pagesize=A4, leftMargin=18 * mm, rightMargin=18 * mm,
-        topMargin=23 * mm, bottomMargin=21 * mm, title="EXOhSPEC Th-Ar detector study",
-        author="Biswajit Jana", subject="Detector-domain analysis of thorium-argon calibration exposures",
+        topMargin=23 * mm, bottomMargin=21 * mm, title="Thorium-argon spectral lines: a scientific guide",
+        author="Biswajit Jana", subject="Emission physics and a measured thorium-argon FITS example",
     )
     doc.addPageTemplates(PageTemplate(id="scientific", frames=[frame], onPage=_page))
     story: list = []
@@ -148,13 +148,13 @@ def build() -> Path:
     story += [
         Spacer(1, 25 * mm),
         _p("TECHNICAL REPORT  /  DATA RELEASE 0.2  /  SEPTEMBER 2026", styles["small"]),
-        _p("Detector-domain characterization of thorium-argon calibration exposures", styles["title"]),
-        _p("Recorded with EXOhSPEC using a ZWO CMOS-family detector", styles["subtitle"]),
+        _p("Thorium-argon spectral lines: emission physics and a measured example", styles["title"]),
+        _p("An educational spectroscopy report using privacy-reviewed EXOhSPEC FITS data", styles["subtitle"]),
         Spacer(1, 5 * mm),
     ]
     author_table = Table(
         [[_p("AUTHOR", styles["small"]), _p("Biswajit Jana", styles["body"])],
-         [_p("CONTEXT", styles["small"]), _p("EXOhSPEC instrumentation study", styles["body"])],
+         [_p("CONTEXT", styles["small"]), _p("Curiosity-led report from practical EXOhSPEC work", styles["body"])],
          [_p("AFFILIATION", styles["small"]), _p("University of Hertfordshire", styles["body"])],
          [_p("EXPOSURES", styles["small"]), _p("30, 60, 120, and 180 seconds", styles["body"])],
          [_p("PUBLIC SCOPE", styles["small"]), _p("Detector coordinates; raw FITS and optical details withheld", styles["body"])]],
@@ -169,8 +169,8 @@ def build() -> Path:
     ]))
     story += [author_table, Spacer(1, 10 * mm)]
     decision = Table([[_p(
-        "<b>Principal finding.</b> The 120 s exposure is the strongest single-frame compromise in this sequence. "
-        "The full four-exposure set remains preferable for high-dynamic-range display and bright-core protection.",
+        "<b>Central idea.</b> A thorium-argon lamp produces a dense emission-line spectrum: discrete atomic "
+        "transitions create bright features that can serve as a wavelength ruler in astronomical spectroscopy.",
         styles["callout"]
     )]], colWidths=[161 * mm])
     decision.setStyle(TableStyle([
@@ -185,7 +185,7 @@ def build() -> Path:
 
     story += _heading("ABSTRACT", "Summary", styles)
     story += [_p(
-        "Thorium-argon (Th-Ar) hollow-cathode lamps are established wavelength references for astronomical spectrographs because they produce a dense forest of narrow, repeatable emission features. This report presents a detector-domain study of four Th-Ar exposures recorded with EXOhSPEC. The public analysis compares exposure times while withholding raw FITS files, complete headers, exact detector geometry, and laboratory optical details.", styles["body"]),
+        "Thorium-argon (Th-Ar) hollow-cathode lamps produce a dense forest of narrow emission features and are established wavelength references for astronomical spectrographs. During practical work on the EXOhSPEC project, several Th-Ar spectra were recorded. Their appearance prompted the questions developed here: what are the bright lines, how does the lamp produce them, how do emission and absorption differ, and why is the spectrum useful? The measured frames provide a real example while private technical details remain unpublished.", styles["body"]),
         _p(
         "The unsaturated integrated response follows exposure time with <i>R</i><super>2</super> = 0.999276 and a maximum fractional residual of 1.994%. Pixels at or above 60,000 ADU increase from 1 at 30 s to 121 at 180 s. Phase correlation gives a maximum translation estimate of 0.071 native pixel relative to 120 s under a translation-only model. The 120 s frame is therefore recommended when one exposure must represent the set, while an HDR estimator provides the clearest detector-space visualization.", styles["body"]),
         _p("Keywords: thorium-argon; hollow-cathode lamp; echelle spectroscopy; wavelength calibration; EXOhSPEC; CMOS; exposure optimization", styles["small"]),
@@ -204,7 +204,7 @@ def build() -> Path:
     story += [metrics, Spacer(1, 5 * mm)]
     story += _heading("1", "Purpose, scope, and privacy boundary", styles)
     story += [_p(
-        "The project has two goals: explain what a Th-Ar source is and determine what the supplied EXOhSPEC exposure sequence supports scientifically before wavelength calibration. The central question is whether 120 s is sufficient and what is gained by retaining 30, 60, and 180 s frames.", styles["body"]),
+        "The main goal is educational: explain what a Th-Ar source is, why its spectrum consists of emission lines, how thorium and argon contribute, where the materials occur, and how such lamps support astronomical spectroscopy. The supplied exposures are a practical example of how those ideas appear on a detector before wavelength calibration.", styles["body"]),
         _p(
         "This release identifies EXOhSPEC and a generic ZWO CMOS-family detector. It intentionally omits exact hardware configuration, optical prescriptions, laboratory layout, raw detector dimensions, full headers, file paths, and raw images. Public coordinates are normalized. This protects the laboratory while preserving the analysis logic and aggregate evidence.", styles["body"]),
         PageBreak()]
@@ -316,7 +316,7 @@ def build() -> Path:
     )
     story += _figure(
         "representative-profiles.png", 161, 114.2,
-        "Figure 8. Representative detector-space profiles with asinh-scaled intensity. The horizontal coordinate is normalized detector position, not wavelength.", styles,
+        "Figure 8. Representative detector-space profiles with asinh-scaled intensity. The lower coordinate is measured detector position; the upper axis names the wavelength parameter, but its numerical values remain unsolved.", styles,
     )
     story += [PageBreak()]
 
@@ -337,32 +337,12 @@ def build() -> Path:
         "The present four frames are enough for this detector-domain report. Additional repeated observations would be needed for cosmic-ray rejection, lamp warm-up characterization, drift versus time, or a statistically defensible repeatability error.", styles["body"]),
         PageBreak()]
 
-    story += _heading("9", "Path to a wavelength-calibrated Th-Ar atlas", styles)
-    calibration_steps = [
-        "Determine the dispersion and cross-dispersion orientation.",
-        "Trace the centre and width of every usable echelle order.",
-        "Model local inter-order background and extract one-dimensional spectra with uncertainties.",
-        "Obtain an approximate order and wavelength seed from the optical model or prior calibration.",
-        "Centroid isolated, unsaturated features and estimate centroid uncertainties.",
-        "Match candidates to a versioned NIST Th-Ar reference list within physical tolerances.",
-        "Reject blends, unsuitable carrier-gas lines, saturated features, and statistical outliers.",
-        "Fit a two-dimensional wavelength model across pixel coordinate and order number.",
-        "Inspect signed residuals versus order, wavelength, detector position, intensity, and species.",
-        "Validate on withheld lines or an independent reference before publishing identifications.",
-    ]
-    story += [_bullet(f"{i}. {text}", styles) for i, text in enumerate(calibration_steps, 1)]
+    story += _heading("9", "Detector coordinate and wavelength", styles)
     story += [_p(
-        "A small global polynomial residual is not sufficient evidence of a correct solution. Local residual structure, blends, air-versus-vacuum convention, reference-list version, weights, and clipping rules must all be documented. Until this chain is complete, a wavelength axis in angstroms would be scientifically misleading.", styles["body"])]
-    story += [PageBreak(), _p("9.1 Reference-line provenance and charge states", styles["h2"]), _p(
-        "NIST SRD 161 combines multiple high-resolution Fourier-transform spectra and covers 277-6288 nm across its constituent observations. It provides more than 20,000 thorium reference wavelengths. NIST recommends optimized thorium Ritz wavelengths where appropriate and warns that blended atlas features should be ignored or modelled from their components. Ar I values in the atlas are measured wavelengths; Ar II and Ar III draw on the cited Ritz information.", styles["body"]),
+        "An echelle image is recorded in detector coordinates. Along a traced order, the physical coordinate can be written as lambda(x,m), where x is detector position and m is order number. Figure 8 therefore shows both the measured normalized position and the wavelength parameter. Numerical wavelength values are absent because the supplied FITS files do not contain a validated pixel-to-wavelength solution. The peaks and smaller fluctuations are genuine Python-derived detector profiles, not illustrative curves.", styles["body"]),
         _p(
-        "The reference atlas is a library, not an automatic label overlay. A strong detector peak is not automatically argon, and a weak peak is not automatically thorium. Intensity depends on lamp current, pressure, age, cathode condition, spectrograph throughput, blaze response, detector sensitivity, and exposure time.", styles["body"]),
-        _p("9.2 Iterative matching", styles["h2"]), _p(
-        "For candidate position x_i in order m, a seed model predicts an approximate wavelength. Reference lines within a physically chosen search window are proposed, a robust global fit updates the model, and inconsistent matches are rejected. Tolerances should narrow as the solution improves. Weights should combine centroid and reference-wavelength uncertainty.", styles["body"]),
-        _p(
-        "A one-order seed can use lambda(x) = a0 + a1 x + a2 x^2 + ..., while the final cross-dispersed solution should couple detector position and order number through lambda(x,m) or a physical model. The model must capture the optics without becoming flexible enough to fit incorrect matches.", styles["body"]),
-        _p("9.3 Validation products", styles["h2"]), _p(
-        "A future labelled atlas should show extracted intensity, species-coded reference sticks, fitted centroids, rejected blends, and a residual panel for every order. It should report line counts, RMS and robust residuals, maximum residual, residual maps versus position and wavelength, air/vacuum convention, line-list version, polynomial form, clipping rule, and performance on lines withheld from fitting.", styles["body"])]
+        "NIST SRD 161 provides the physical reference wavelengths used in Th-Ar work, including more than 20,000 thorium entries across its constituent spectra. These data explain why Th-Ar is an exceptionally rich wavelength reference; they are cited here as atomic-data provenance rather than attached to uncalibrated detector peaks.", styles["body"]),
+        PageBreak()]
     story += _heading("10", "Limitations", styles)
     limitations = [
         "Only one frame exists at each duration; fixed-exposure repeatability is unknown.",
@@ -407,7 +387,7 @@ def build() -> Path:
 
     story += _heading("ACKNOWLEDGEMENTS", "Supervision and contribution", styles)
     story += [_p(
-        "This work was carried out by <b>Biswajit Jana</b> in the context of EXOhSPEC instrumentation research. The author acknowledges <b>Prof. Hugh Jones</b> for supervision of the EXOhSPEC research and <b>Prof. Bill Martin</b> for supervision of the optics and laboratory work at the University of Hertfordshire.", styles["body"]),
+        "During practical laboratory work on the EXOhSPEC project, <b>Biswajit Jana</b> recorded several thorium-argon spectra and became interested in understanding what the bright lines represent, how they are produced, and why they are useful. That curiosity led to the analysis and educational report presented here. The author gratefully acknowledges <b>Prof. Hugh Jones</b> for supervision of the EXOhSPEC work and <b>Prof. Bill Martin</b> for guidance and supervision during the optics laboratory work at the University of Hertfordshire.", styles["body"]),
         _p(
         "The public release was prepared to communicate the scientific analysis while respecting the privacy of the detector configuration, optical design implementation, laboratory layout, FITS headers, and raw data.", styles["body"])]
     story += _heading("REFERENCES", "Scientific and data sources", styles)
@@ -426,7 +406,7 @@ def build() -> Path:
     ]
     story += [_p(ref, styles["ref"]) for ref in refs]
     story += [Spacer(1, 5 * mm), _p(
-        "Reference line databases are cited as the intended provenance for a future wavelength solution. Their existence does not by itself identify peaks in the present detector images.", styles["small"])]
+        "Reference line databases provide the atomic-data provenance used in Th-Ar spectroscopy. Their existence does not by itself identify peaks in the present detector images.", styles["small"])]
 
     doc.build(story)
     shutil.copy2(OUTPUT, ROOT / "web" / OUTPUT.name)
