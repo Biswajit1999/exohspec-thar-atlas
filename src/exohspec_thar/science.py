@@ -6,6 +6,7 @@ quantitative assessment of the exposure ladder and image stability only.
 
 from __future__ import annotations
 
+import csv
 import json
 import shutil
 from dataclasses import asdict, dataclass
@@ -187,6 +188,123 @@ def _save_peak_map(
     ax.set_yticks([])
     ax.set_title("Morphological candidates - not atomic identifications", color="#102f52", fontsize=15)
     fig.savefig(output, dpi=180, facecolor=fig.get_facecolor())
+    plt.close(fig)
+
+
+def _select_labelled_candidates(
+    peaks: tuple[np.ndarray, np.ndarray, np.ndarray],
+    shape: tuple[int, int],
+    count: int = 24,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Choose strong, well-separated features for readable public callouts."""
+
+    y, x, intensity = peaks
+    minimum_distance = 0.055 * float(min(shape))
+    y_margin = 0.04 * shape[0]
+    x_margin = 0.04 * shape[1]
+    selected: list[int] = []
+    for index in range(len(x)):
+        if not (x_margin <= x[index] <= shape[1] - x_margin and y_margin <= y[index] <= shape[0] - y_margin):
+            continue
+        if all(np.hypot(x[index] - x[other], y[index] - y[other]) >= minimum_distance for other in selected):
+            selected.append(index)
+        if len(selected) == count:
+            break
+    chosen = np.asarray(selected, dtype=int)
+    return y[chosen], x[chosen], intensity[chosen]
+
+
+def _save_measured_line_candidates(
+    signal_rate: np.ndarray,
+    peaks: tuple[np.ndarray, np.ndarray, np.ndarray],
+    output: Path,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Label real 120 s emission candidates without assigning atomic identities."""
+
+    y, x, intensity = _select_labelled_candidates(peaks, signal_rate.shape)
+    sample = signal_rate[::8, ::8]
+    high = float(np.percentile(sample, 99.84))
+    display = np.arcsinh(10 * np.clip(signal_rate / max(high, 1e-6), 0, None)) / np.arcsinh(10)
+    oriented = np.rot90(display, k=1)
+    height, width = signal_rate.shape
+    ox = y
+    oy = width - 1 - x
+
+    fig, ax = plt.subplots(figsize=(13.2, 7.6), constrained_layout=True)
+    fig.patch.set_facecolor("white")
+    ax.imshow(oriented, origin="lower", aspect="auto", cmap="gray", vmin=0, vmax=1)
+    ax.scatter(ox, oy, s=54, facecolors="none", edgecolors="#14b8a6", linewidths=1.25)
+    for index, (px, py) in enumerate(zip(ox, oy), start=1):
+        dx = 8 if index % 2 else -8
+        ha = "left" if dx > 0 else "right"
+        ax.annotate(
+            f"L{index:02d}",
+            xy=(px, py), xytext=(dx, 8), textcoords="offset points",
+            color="#082f49", fontsize=7.5, fontweight="bold", ha=ha,
+            bbox=dict(boxstyle="round,pad=0.18", fc="white", ec="#14b8a6", alpha=0.88),
+            arrowprops=dict(arrowstyle="-", color="#14b8a6", lw=0.65),
+        )
+    ax.set_xticks([])
+    ax.set_yticks([])
+    ax.set_title(
+        "Selected emission-feature candidates measured in the 120 s FITS frame",
+        color="#102f52", fontsize=17, fontweight="bold",
+    )
+    ax.text(
+        0.015, 0.025,
+        "L01–L24 are detector-feature identifiers, not Th/Ar species or wavelength assignments.",
+        transform=ax.transAxes, color="#102f52", fontsize=9.5,
+        bbox=dict(boxstyle="round,pad=0.4", fc="white", ec="#102f52", alpha=0.94),
+    )
+    fig.savefig(output, dpi=190, facecolor="white")
+    plt.close(fig)
+    return y, x, intensity
+
+
+def _save_blue_red_ambiguity(signal_rate: np.ndarray, output: Path) -> None:
+    """Show the measured dispersion axis and both possible wavelength senses."""
+
+    sample = signal_rate[::8, ::8]
+    high = float(np.percentile(sample, 99.84))
+    display = np.arcsinh(10 * np.clip(signal_rate / max(high, 1e-6), 0, None)) / np.arcsinh(10)
+    oriented = np.rot90(display, k=1)
+    fig = plt.figure(figsize=(13.2, 8.2), constrained_layout=True)
+    grid = fig.add_gridspec(3, 1, height_ratios=[7.2, 0.7, 0.7])
+    ax = fig.add_subplot(grid[0])
+    ax.imshow(oriented, origin="lower", aspect="auto", cmap="gray", vmin=0, vmax=1)
+    ax.set_xticks([])
+    ax.set_yticks([])
+    ax.set_title(
+        "Blue and red ends of the measured format: calibration status",
+        color="#102f52", fontsize=17, fontweight="bold",
+    )
+    ax.text(
+        0.015, 0.965,
+        "Both wavelength senses remain possible until one order is matched to known lines.",
+        transform=ax.transAxes, va="top", color="#102f52", fontsize=9.5,
+        bbox=dict(boxstyle="round,pad=0.35", fc="white", ec="#102f52", alpha=0.94),
+    )
+    ax.annotate(
+        "dispersion coordinate along a traced order",
+        xy=(0.78, 0.08), xytext=(0.22, 0.08),
+        xycoords="axes fraction", textcoords="axes fraction",
+        ha="center", va="center", color="#102f52", fontsize=10,
+        bbox=dict(boxstyle="round,pad=0.35", fc="white", ec="#102f52", alpha=0.94),
+        arrowprops=dict(arrowstyle="-|>", color="#14b8a6", lw=2.2),
+    )
+    gradient = np.linspace(0, 1, 900)[None, :]
+    for row, reverse, label in ((1, False, "possible sense A"), (2, True, "possible sense B")):
+        bar = fig.add_subplot(grid[row])
+        values = gradient[:, ::-1] if reverse else gradient
+        bar.imshow(values, aspect="auto", cmap="turbo", extent=(0, 1, 0, 1))
+        left, right = (("red / longer λ", "violet-blue / shorter λ") if reverse else
+                       ("violet-blue / shorter λ", "red / longer λ"))
+        bar.text(0.01, 0.5, left, va="center", ha="left", color="white", fontsize=9, fontweight="bold")
+        bar.text(0.99, 0.5, right, va="center", ha="right", color="white", fontsize=9, fontweight="bold")
+        bar.text(0.50, 0.5, label, va="center", ha="center", color="white", fontsize=9,
+                 bbox=dict(boxstyle="round,pad=0.2", fc="#102f52", ec="white", alpha=0.85))
+        bar.set_axis_off()
+    fig.savefig(output, dpi=190, facecolor="white")
     plt.close(fig)
 
 
@@ -390,6 +508,8 @@ def build_science_products(input_paths: Iterable[str | Path], output_root: str |
 
     hdr, _used = _hdr_rate(paths, crop)
     peak_tuple = _candidate_peaks(hdr)
+    reference_rate = np.maximum(reference, 0.0) / exposures[reference_index]
+    reference_peaks = _candidate_peaks(reference_rate)
 
     fallback: dict[str, int] = {}
     still_unassigned = np.ones(images[0].shape, dtype=bool)
@@ -417,12 +537,33 @@ def build_science_products(input_paths: Iterable[str | Path], output_root: str |
     root = Path(output_root).resolve()
     figures = root / "report" / "figures"
     data_dir = root / "report" / "data"
+    derived_dir = root / "data" / "derived"
     figures.mkdir(parents=True, exist_ok=True)
     data_dir.mkdir(parents=True, exist_ok=True)
+    derived_dir.mkdir(parents=True, exist_ok=True)
     _save_ladder(exposures, signals, figures / "exposure-ladder.png")
     _save_diagnostics(metrics, figures / "detector-diagnostics.png")
     _save_registration(metrics, figures / "registration-shifts.png")
     _save_peak_map(hdr, peak_tuple, figures / "candidate-feature-map.png")
+    labelled = _save_measured_line_candidates(
+        reference_rate,
+        reference_peaks,
+        figures / "measured-line-candidates-120s.png",
+    )
+    _save_blue_red_ambiguity(reference_rate, figures / "measured-blue-red-status.png")
+    label_y, label_x, label_intensity = labelled
+    relative_intensity = label_intensity / max(float(np.max(label_intensity)), 1e-12)
+    with (derived_dir / "measured-line-candidates-120s.csv").open("w", newline="", encoding="utf-8") as handle:
+        writer = csv.writer(handle)
+        writer.writerow(("feature_id", "normalized_x", "normalized_y", "relative_peak_signal", "identification"))
+        for index, (px, py, value) in enumerate(zip(label_x, label_y, relative_intensity), start=1):
+            writer.writerow((
+                f"L{index:02d}",
+                f"{px / max(reference_rate.shape[1] - 1, 1):.6f}",
+                f"{py / max(reference_rate.shape[0] - 1, 1):.6f}",
+                f"{value:.6f}",
+                "unidentified emission-feature candidate",
+            ))
     coordinate, comparison, illustrative = _representative_profiles(exposures, signals, hdr)
     _save_profiles(coordinate, illustrative, figures / "representative-profiles.png")
     web_assets = root / "web" / "assets"
@@ -432,6 +573,8 @@ def build_science_products(input_paths: Iterable[str | Path], output_root: str |
         "detector-diagnostics.png",
         "registration-shifts.png",
         "candidate-feature-map.png",
+        "measured-line-candidates-120s.png",
+        "measured-blue-red-status.png",
         "representative-profiles.png",
     ):
         shutil.copy2(figures / name, web_assets / name)

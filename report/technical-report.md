@@ -178,6 +178,14 @@ The supplied FITS frame is a two-dimensional echellogram, not a finished one-dim
 
 **Figure 2b.** High-contrast reading guide generated from the measured HDR derivative. Bright compact features are emission-line images. Extended high-signal structures require saturation checks. Diffuse structure is part of the measured background. Repeated loci are candidate echelle traces, but order numbering requires a trace solution.
 
+![Selected measured emission candidates in the 120-second frame](figures/measured-line-candidates-120s.png)
+
+**Figure 2c.** Python-detected, spatially separated features marked directly on the measured 120 s frame. L01–L24 are detector-feature identifiers. They intentionally do not claim a thorium/argon species or wavelength because no pixel-to-wavelength relation is present in the FITS header. The accompanying CSV publishes normalized coordinates and relative peak signal for these callouts.
+
+![Blue and red wavelength-direction ambiguity](figures/measured-blue-red-status.png)
+
+**Figure 2d.** The measured order geometry determines a dispersion axis, but it does not by itself determine the sign of increasing wavelength. The blue-to-red and red-to-blue bars show the two mirror possibilities. One known order and line match is needed to select the correct sense.
+
 The display uses an inverse-hyperbolic-sine stretch. A linear stretch would be dominated by a small number of bright pixels and would hide most faint structure. The stretch changes display contrast only; quantitative calculations use linear detector values.
 
 ### 7.1 The visible diffuse component
@@ -187,6 +195,10 @@ The broad pale area in the upper part of the portrait view becomes a left-side d
 ### 7.2 What should be measured for each feature
 
 For a usable line, the analysis should record centroid, integrated area, peak height, full width at half maximum, asymmetry, local background, uncertainty, saturation flag, blend flag, order number, and detector position. The centroid constrains wavelength. Width and asymmetry diagnose the line-spread function. Integrated area is often more stable than peak height for comparing unsaturated lines. None of these quantities should be taken from the display-stretched image.
+
+### 7.3 How the marked detector features become Th/Ar identifications
+
+The L-labels provide a reproducible bridge between the image and a future calibration without pretending that morphology identifies chemistry. First trace each echelle order, then extract a one-dimensional profile and measure unsaturated centroids. Match several centroids jointly to NIST lines under a monotonic dispersion model, fit \(\lambda(x,m)\), reject blends and large residuals, and validate the solution on lines excluded from the fit. Only after that validation may an L-label be replaced by a transition such as Th I or Ar I with a numerical wavelength. Colour and brightness alone cannot make that assignment.
 
 ## 8. Quantitative results
 

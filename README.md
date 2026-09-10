@@ -52,6 +52,26 @@ Therefore, the NIST species names are shown in a separate reference plot and
 are not attached to individual detector spots. That distinction prevents an
 uncalibrated bright feature from being incorrectly called thorium or argon.
 
+## Lines marked in the 120-second FITS frame
+
+![Selected measured emission-feature candidates labelled L01 to L24](web/assets/measured-line-candidates-120s.png)
+
+Python detects and marks 24 strong, spatially separated features in the
+120-second frame. The labels L01–L24 are stable detector-feature identifiers,
+not atomic names. Their normalized positions and relative peak signals are
+published in
+[the measured-candidate table](data/derived/measured-line-candidates-120s.csv).
+Assigning a wavelength and a Th I, Th II, Ar I, or Ar II identity requires an
+order trace and a matched dispersion solution.
+
+![Measured format with both possible blue-to-red wavelength directions](web/assets/measured-blue-red-status.png)
+
+The detector establishes the axis along which wavelength changes, but not
+which end is blue or red. The FITS header contains no wavelength calibration,
+so the two mirror directions remain possible. A known line/order match chooses
+the correct sense; after that, the NIST reference wavelengths above can be
+fitted to detector centroids.
+
 ## What was measured from the four FITS images
 
 The Python analysis reads the two-dimensional FITS arrays, applies FITS scaling,
@@ -101,6 +121,7 @@ atmospheric signal can be interpreted.
 - [Technical report](report/technical-report.md)
 - [PDF report](output/pdf/exohspec-thar-detector-study.pdf)
 - [NIST reference-line subset](data/derived/nist-visible-reference-lines.csv)
+- [Measured 120 s feature table](data/derived/measured-line-candidates-120s.csv)
 - [Analysis methodology](docs/methodology.md)
 - [`src/exohspec_thar`](src/exohspec_thar): FITS and numerical analysis
 - [`scripts`](scripts): analysis, plotting, and report builders

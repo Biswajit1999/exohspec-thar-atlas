@@ -263,7 +263,20 @@ def build() -> Path:
         "annotated-detector-map.png", 125, 159,
         "Figure 5. Measured detector morphology with a reading guide. Bright compact features are emission-line images. Repeated loci are candidate echelle traces, but order numbering and wavelengths require calibration.", styles,
     )
-    story += [PageBreak()]
+    story += [PageBreak(), _p("4.2 Measured features marked in the 120 s frame", styles["h2"]), _p(
+        "Python detects strong local maxima in the measured 120 s array and selects a spatially separated subset for readable callouts. L01-L24 are detector-feature identifiers, not atomic assignments. Their normalized coordinates and relative peak signals are exported as a CSV table.", styles["body"])]
+    story += _figure(
+        "measured-line-candidates-120s.png", 161, 92.7,
+        "Figure 5a. Selected emission-feature candidates marked directly on the measured 120 s FITS frame. A label identifies a detector feature only; it does not identify thorium, argon, or wavelength.", styles,
+    )
+    story += [_p(
+        "A valid atomic label requires tracing the containing order, extracting its one-dimensional profile, fitting an unsaturated centroid, and matching several centroids jointly to laboratory wavelengths. Colour and brightness alone cannot distinguish Th I, Th II, Ar I, and Ar II.", styles["body"]), PageBreak(), _p("4.3 Where are the blue and red ends?", styles["h2"])]
+    story += _figure(
+        "measured-blue-red-status.png", 161, 100,
+        "Figure 5b. The measured geometry fixes the dispersion axis but not the sign of increasing wavelength. The two colour bars show the mirror possibilities; a known line/order match is needed to choose one.", styles,
+    )
+    story += [_p(
+        "The 120 s FITS header contains no WCS, wavelength coordinate, dispersion coefficients, or order numbers. Placing a numerical NIST wavelength on an individual detector spot would therefore be an invented result. The species-coded NIST atlas in Figure 3b supplies the reference wavelengths for the eventual match, while Figures 5a and 5b preserve what this observation itself establishes.", styles["body"]), PageBreak()]
 
     story += _heading("5", "Detector-domain methodology", styles)
     method_sections = [
