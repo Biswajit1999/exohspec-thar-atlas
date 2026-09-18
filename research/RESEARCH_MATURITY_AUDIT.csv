@@ -1,0 +1,11 @@
+dimension,before_v0.2,after_v0.3,evidence
+Falsifiable hypothesis,6,10,Predeclared centroid-RMSE null and faint-line guardrail
+Literature and provenance,8,9,Instrument references plus line-selection literature
+Data and schema,7,9,Versioned config and machine-readable reports
+Independent analysis,6,9,Four estimators compared on identical injections
+Uncertainty calibration,3,8,Repeated noise realizations with bias and RMSE
+Ground-truth recovery,0,10,Known injected sub-pixel centroids recovered 24000 times
+Automated testing,3,9,Six tests plus three-version CI matrix
+Deterministic reproducibility,4,9,Seeded regeneration checked by CI
+Claims and limitations,7,10,Claims register and dedicated limitations document
+Public dissemination,8,10,Website release assets code data and study documentation

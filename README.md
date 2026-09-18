@@ -94,6 +94,26 @@ translation-only model. The 120-second exposure is the clearest single-frame
 compromise in this sequence; the shorter frame protects strong cores and the
 longer frame reveals more faint structure.
 
+## Controlled centroid injection–recovery
+
+The v0.3 research upgrade tests that exposure-ladder rationale rather than
+leaving it qualitative. A seeded detector simulation injects known sub-pixel
+centroids for the 24 published feature strengths 1,000 times each and compares
+four estimators on identical realizations.
+
+| Strength band | Fixed 180 s RMSE | Pixelwise HDR RMSE | Change |
+|---|---:|---:|---:|
+| All 24 features | 0.008338 px | 0.004675 px | 43.9% lower |
+| 7 strong features | 0.012954 px | 0.002086 px | 83.9% lower |
+| 12 faint features | 0.005834 px | 0.005834 px | unchanged |
+
+The predeclared strong-feature null is rejected and the faint-feature guardrail
+passes. This is a **synthetic detector-domain validation**, not a measured
+wavelength solution or an estimate of EXOhSPEC radial-velocity precision. Read
+the [study design and limitations](docs/CENTROID_RECOVERY_STUDY.md), the
+[claims register](docs/CLAIMS.md), and the
+[machine-readable results](results/centroid-recovery/report.json).
+
 ![Python-derived detector-space profiles with a wavelength parameter shown above the measured detector coordinate](web/assets/representative-profiles.png)
 
 The large peaks and smaller fluctuations in these profiles come from the FITS
@@ -123,6 +143,10 @@ atmospheric signal can be interpreted.
 - [NIST reference-line subset](data/derived/nist-visible-reference-lines.csv)
 - [Measured 120 s feature table](data/derived/measured-line-candidates-120s.csv)
 - [Analysis methodology](docs/methodology.md)
+- [Centroid injection–recovery study](docs/CENTROID_RECOVERY_STUDY.md)
+- [Claims register](docs/CLAIMS.md)
+- [Limitations](docs/LIMITATIONS.md)
+- [Research maturity audit](research/RESEARCH_MATURITY_AUDIT.md)
 - [`src/exohspec_thar`](src/exohspec_thar): FITS and numerical analysis
 - [`scripts`](scripts): analysis, plotting, and report builders
 - [`tests`](tests): numerical and privacy-contract tests
@@ -138,6 +162,7 @@ python scripts/build_science_report.py ThAr_30sec.fit ThAr_60sec.fit \
 python scripts/build_reference_line_guide.py
 python scripts/build_explanatory_figures.py
 python scripts/build_pdf_report.py
+python scripts/run_centroid_recovery.py
 pytest
 ```
 

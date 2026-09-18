@@ -39,6 +39,22 @@ For each pixel in the public crop:
 The result is a relative detector signal-rate image. It is not a calibrated flux
 map.
 
+## Centroid injection–recovery
+
+The public v0.3 experiment tests the HDR rule against known synthetic truth.
+Each of the 24 published candidate strengths is represented by an isolated
+Gaussian detector profile at a deterministic sub-pixel phase. For every feature,
+1,000 realizations include signal shot noise, 4.45 ADU Gaussian background
+scatter, and hard clipping at 65,535 ADU. The selection algorithm retains the
+existing 60,000 ADU ceiling.
+
+The intensity-weighted centroid is evaluated for fixed 120 s, fixed 180 s,
+longest-wholly-unsaturated, and pixelwise-HDR profiles. Bias and root-mean-square
+error are computed against the injected centre. All estimators see the same
+realizations, and the configuration and random seed are version controlled.
+Full assumptions and limitations are in
+[`CENTROID_RECOVERY_STUDY.md`](CENTROID_RECOVERY_STUDY.md).
+
 ## Interpretation boundary
 
 The present release compares exposure behavior. It does not identify atomic
@@ -46,4 +62,5 @@ transitions. A defensible line identification requires traced spectral orders,
 an initial dispersion model, matching to a reference list, rejection of blends,
 and residual validation. Until those steps exist, the page calls features
 “emission features” or “detector peaks,” not named Th I, Th II, or Ar I lines.
-
+The simulation similarly reports centroid errors only in pixels; it does not
+convert them into wavelength or radial velocity.

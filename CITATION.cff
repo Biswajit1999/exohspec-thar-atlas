@@ -5,8 +5,8 @@ type: software
 authors:
   - family-names: Jana
     given-names: Biswajit
-version: 0.1.0
-date-released: 2026-09-03
+version: 0.3.0
+date-released: 2026-09-18
 license: MIT
 repository-code: "https://github.com/Biswajit1999/exohspec-thar-atlas"
 keywords:
@@ -14,4 +14,3 @@ keywords:
   - thorium-argon
   - wavelength calibration
   - EXOhSPEC
-

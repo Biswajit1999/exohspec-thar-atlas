@@ -32,7 +32,7 @@
     <main id="main">
       <article>
         <header class="paper-header" id="top">
-          <div class="report-kicker">Technical report · Data release 0.2 · September 2026</div>
+          <div class="report-kicker">Technical report · Data release 0.3 · September 2026</div>
           <div class="paper-grid">
             <div>
               <h1>Thorium-argon spectral lines: emission physics and a measured example</h1>
@@ -172,6 +172,29 @@
               <img src="assets/registration-shifts.png" width="1710" height="864" loading="lazy" alt="Bar chart of estimated x and y translations for each exposure relative to the 120 second frame." />
               <figcaption><b>Figure 7.</b> Translation estimates from phase correlation after four-pixel block averaging. Sub-pixel values should be interpreted as algorithmic estimates, not metrology-grade uncertainties.</figcaption>
             </figure>
+            <div class="prose">
+              <h3>Controlled centroid injection–recovery</h3>
+              <p>A seeded experiment injects known sub-pixel centroids for all 24 published feature strengths, 1,000 times per feature. It compares fixed 120 s, fixed 180 s, longest-unsaturated, and pixelwise-HDR estimators on the same 24,000 realizations.</p>
+            </div>
+            <div class="finding-grid">
+              <article><h3>Strong features</h3><p>Pixelwise HDR reduces centroid RMSE from 0.012954 pixel to 0.002086 pixel relative to fixed 180 s: an 83.9% reduction.</p></article>
+              <article><h3>All features</h3><p>Across all 24 feature strengths, RMSE falls from 0.008338 pixel to 0.004675 pixel, a 43.9% reduction.</p></article>
+              <article><h3>Faint guardrail</h3><p>The faint-feature HDR/fixed-180 RMSE ratio is 1.000, so the predeclared no-material-degradation guardrail passes.</p></article>
+              <article><h3>Inference boundary</h3><p>This validates a synthetic detector estimator. It is not a wavelength solution, atomic identification, or instrument radial-velocity precision.</p></article>
+            </div>
+            <div class="table-wrap" tabindex="0" aria-label="Scrollable centroid recovery table">
+              <table>
+                <caption>Table 2. Seeded centroid recovery results</caption>
+                <thead><tr><th>Feature band</th><th>Estimator</th><th>Injections</th><th>Bias (px)</th><th>RMSE (px)</th></tr></thead>
+                <tbody>
+                  <tr><td>Strong</td><td>Fixed 180 s</td><td>7,000</td><td>-0.002136</td><td>0.012954</td></tr>
+                  <tr><td>Strong</td><td>Pixelwise HDR</td><td>7,000</td><td>-0.000021</td><td>0.002086</td></tr>
+                  <tr><td>Faint</td><td>Fixed 180 s</td><td>12,000</td><td>-0.000043</td><td>0.005834</td></tr>
+                  <tr><td>Faint</td><td>Pixelwise HDR</td><td>12,000</td><td>-0.000043</td><td>0.005834</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p><a href="https://github.com/Biswajit1999/exohspec-thar-atlas/blob/main/docs/CENTROID_RECOVERY_STUDY.md">Read the complete design, hypothesis, limitations, and machine-readable evidence.</a></p>
           </div>
         </section>
 

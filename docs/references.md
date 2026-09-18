@@ -27,7 +27,11 @@
 10. NIST, *Atomic weights and isotopic compositions for argon*,
     <https://physics.nist.gov/cgi-bin/Compositions/stand_alone.pl?ascii=ascii&ele=Ar>.
 11. ESO, *ESPRESSO ThAr/FP/LFC wavelength-calibration quality control*,
-    <https://www.eso.org/observing/dfo/quality/ESPRESSO/qc/waveThAr_qc1.html>.
+   <https://www.eso.org/observing/dfo/quality/ESPRESSO/qc/waveThAr_qc1.html>.
+12. Murphy, M. T. et al. (2007), “Selection of ThAr lines for wavelength
+    calibration of echelle spectra and implications for variations in the
+    fine-structure constant,” *MNRAS* 378, 221–230,
+    <https://doi.org/10.1111/j.1365-2966.2007.11768.x>.
 
 Reference [3] is the intended atomic-data provenance for a future wavelength
 solution. Its existence does not by itself identify peaks in these detector
