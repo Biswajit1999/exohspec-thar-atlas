@@ -116,10 +116,11 @@ def _feature_centres(features: list[Feature]) -> np.ndarray:
 
 def run_recovery(
     features: list[Feature],
-    config: CentroidConfig = CentroidConfig(),
+    config: CentroidConfig | None = None,
 ) -> list[RecoveryRecord]:
     """Run deterministic line-centroid injection-recovery simulations."""
 
+    config = config or CentroidConfig()
     if not features:
         raise ValueError("At least one feature is required")
     if config.trials_per_feature < 2:
