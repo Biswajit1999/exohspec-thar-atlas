@@ -1,0 +1,17 @@
+strength_band,strategy,features,trials,bias_px,rmse_px,catastrophic_fraction
+all,fixed_120s,24,24000,-0.00047518,0.00967088,0.0
+all,fixed_180s,24,24000,-0.00063892,0.00833839,0.0
+all,longest_unsaturated,24,24000,-2.62e-05,0.00484927,0.0
+all,pixelwise_hdr,24,24000,-2.22e-05,0.00467527,0.0
+strong,fixed_120s,7,7000,-0.00140713,0.01453372,0.0
+strong,fixed_180s,7,7000,-0.0021363,0.0129537,0.0
+strong,longest_unsaturated,7,7000,-5.571e-05,0.00308176,0.0
+strong,pixelwise_hdr,7,7000,-2.104e-05,0.00208591,0.0
+intermediate,fixed_120s,5,5000,0.00013856,0.00517915,0.0
+intermediate,fixed_180s,5,5000,2.655e-05,0.00413825,0.0
+intermediate,longest_unsaturated,5,5000,5.474e-05,0.00422876,0.0
+intermediate,pixelwise_hdr,5,5000,2.543e-05,0.00413914,0.0
+faint,fixed_120s,12,12000,-0.00018728,0.00725662,0.0
+faint,fixed_180s,12,12000,-4.272e-05,0.00583435,0.0
+faint,longest_unsaturated,12,12000,-4.272e-05,0.00583435,0.0
+faint,pixelwise_hdr,12,12000,-4.272e-05,0.00583435,0.0

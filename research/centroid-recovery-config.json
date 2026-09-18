@@ -1,0 +1,11 @@
+{
+  "exposures_seconds": [30.0, 60.0, 120.0, 180.0],
+  "trials_per_feature": 1000,
+  "seed": 20260918,
+  "background_adu": 505.0,
+  "background_sigma_adu": 4.45,
+  "saturation_adu": 65535.0,
+  "selection_ceiling_adu": 60000.0,
+  "gaussian_sigma_px": 1.15,
+  "strongest_peak_rate_adu_per_second": 900.0
+}
