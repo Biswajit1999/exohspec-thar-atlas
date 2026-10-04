@@ -96,7 +96,7 @@ longer frame reveals more faint structure.
 
 ## Controlled centroid injection–recovery
 
-The v0.3 research upgrade tests that exposure-ladder rationale rather than
+The v0.3 analysis tests that exposure-ladder rationale rather than
 leaving it qualitative. A seeded detector simulation injects known sub-pixel
 centroids for the 24 published feature strengths 1,000 times each and compares
 four estimators on identical realizations.
@@ -146,7 +146,6 @@ atmospheric signal can be interpreted.
 - [Centroid injection–recovery study](docs/CENTROID_RECOVERY_STUDY.md)
 - [Claims register](docs/CLAIMS.md)
 - [Limitations](docs/LIMITATIONS.md)
-- [Research maturity audit](research/RESEARCH_MATURITY_AUDIT.md)
 - [`src/exohspec_thar`](src/exohspec_thar): FITS and numerical analysis
 - [`scripts`](scripts): analysis, plotting, and report builders
 - [`tests`](tests): numerical and privacy-contract tests
