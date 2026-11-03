@@ -5,7 +5,7 @@ import numpy as np
 import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from research.centroid_information import (
+from research.centroid_information import (  # noqa: E402
     gaussian_pixel_profile, centroid_crlb, exposure_ladder_information,
 )
 
